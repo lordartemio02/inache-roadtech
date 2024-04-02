@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { BasePage } from "../pages";
-import NotFoundPage from "../pages/NotFoundPage";
+import { BasePage, NotFoundPage } from "../pages";
 
 const basicRoutes = [
   {
