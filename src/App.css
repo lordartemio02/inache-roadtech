@@ -1,0 +1,82 @@
+@font-face {
+  font-weight: 400; /* Соответствует значению normal */
+  font-family: Onest;
+  src: url("./assets/fonts/Onest-Regular.ttf");
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: Onest;
+  src: url("./assets/fonts/Onest-Medium.ttf");
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: Onest;
+  src: url("./assets/fonts/Onest-SemiBold.ttf");
+}
+
+@font-face {
+  font-weight: 700; /* Соответствует значению bold */
+  font-family: Onest;
+  src: url("./assets/fonts/Onest-Bold.ttf");
+}
+
+@font-face {
+  font-weight: 400; /* Соответствует значению normal */
+  font-family: Golos;
+  src: url("./assets/fonts/GolosText-Regular.ttf");
+}
+
+@font-face {
+  font-weight: 500;
+  font-family: Golos;
+  src: url("./assets/fonts/GolosText-Medium.ttf");
+}
+
+@font-face {
+  font-weight: 600;
+  font-family: Golos;
+  src: url("./assets/fonts/GolosText-SemiBold.ttf");
+}
+
+@font-face {
+  font-weight: 700; /* Соответствует значению bold */
+  font-family: Golos;
+  src: url("./assets/fonts/GolosText-Bold.ttf");
+}
+
+span,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+button,
+input,
+label,
+li,
+ul,
+ol,
+textarea {
+  font-family: Onest, sans-serif;
+}
+
+.golos {
+  font-family: Golos, sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
