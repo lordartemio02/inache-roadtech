@@ -1,11 +1,9 @@
-import Header from "../components/Header";
 import Layout from "../components/Layout";
 
 const BasePage = () => {
   return (
     <Layout>
-      <Header />
-      <div></div>
+      <div>Work</div>
     </Layout>
   );
 };

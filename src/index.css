@@ -1,6 +1,81 @@
+@import "react-datepicker/dist/react-datepicker.css";
+@import "react-multi-carousel/lib/styles.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* ProtoGrotesk */
+  @font-face {
+    font-weight: 400;
+    font-family: ProtoGrotesk;
+    font-display: swap;
+    src: url("./assets/fonts/ProtoGrotesk/ProtoGrotesk-Regular.ttf");
+  }
+
+  @font-face {
+    font-weight: 500;
+    font-family: ProtoGrotesk;
+    font-display: swap;
+    src: url("./assets/fonts/ProtoGrotesk/ProtoGrotesk-Medium.ttf");
+  }
+
+  @font-face {
+    font-weight: 700;
+    font-family: ProtoGrotesk;
+    font-display: swap;
+    src: url("./assets/fonts/ProtoGrotesk/ProtoGrotesk-Bold.ttf");
+  }
+
+  /* SuisseIntl */
+  @font-face {
+    font-weight: 400;
+    font-family: SuisseIntl;
+    font-display: swap;
+    src: url("./assets/fonts/SuisseIntl/SuisseIntl-Regular.otf");
+  }
+
+  @font-face {
+    font-weight: 500;
+    font-family: SuisseIntl;
+    font-display: swap;
+    src: url("./assets/fonts/SuisseIntl/SuisseIntl-Medium.otf");
+  }
+
+  @font-face {
+    font-weight: 600;
+    font-family: SuisseIntl;
+    font-display: swap;
+    src: url("./assets/fonts/SuisseIntl/SuisseIntl-SemiBold.otf");
+  }
+
+  @font-face {
+    font-weight: 700;
+    font-family: SuisseIntl;
+    font-display: swap;
+    src: url("./assets/fonts/SuisseIntl/SuisseIntl-Bold.otf");
+  }
+
+  @font-face {
+    font-weight: 800;
+    font-family: SuisseIntl;
+    font-display: swap;
+    src: url("./assets/fonts/SuisseIntl/SuisseIntl-Black.otf");
+  }
+
+  @font-face {
+    font-weight: 400;
+    font-style: italic;
+    font-family: SuisseIntl;
+    font-display: swap;
+    src: url("./assets/fonts/SuisseIntl/SuisseIntl-RegularItalic.otf");
+  }
+
+  html {
+    @apply font-suisseIntl font-normal;
+  }
+}
 
 #root {
   width: 100%;
