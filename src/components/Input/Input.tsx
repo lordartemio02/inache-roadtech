@@ -1,6 +1,6 @@
-import { FC, InputHTMLAttributes, useRef } from 'react';
+import { FC, InputHTMLAttributes, useRef } from "react";
 
-import { CloseIcon } from '../../assets/icons';
+import { CloseIcon } from "../../assets/icons";
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   error?: string;
@@ -22,12 +22,12 @@ const Input: FC<IInput> = ({
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null);
-  const classNameIsError = error ? 'outline-2 outline-warning-100' : '';
-  const classNameIsDisabled = disabled ? 'bg-natural-600' : '';
+  const classNameIsError = error ? "outline-2 outline-warning-100" : "";
+  const classNameIsDisabled = disabled ? "bg-natural-600" : "";
 
   const handleClearInput = () => {
     if (ref.current && onClearInput) {
-      ref.current.value = '';
+      ref.current.value = "";
       ref.current.focus();
       onClearInput();
     }
@@ -39,14 +39,12 @@ const Input: FC<IInput> = ({
         <label
           aria-hidden
           onClick={() => ref.current?.focus()}
-          className='block text-p2 text-natural-100 mb-2'
-        >
+          className="block text-p2 text-natural-100 mb-2">
           {label}
         </label>
       )}
       <div
-        className={`overflow-hidden hover:outline-2 outline outline-natural-500 bg-white focus-within:outline-2 focus-within:outline-yellow-200 flex items-center rounded-xl ${classNameIsError} ${classNameIsDisabled}`}
-      >
+        className={`overflow-hidden hover:outline-2 outline outline-natural-500 bg-white focus-within:outline-2 focus-within:outline-yellow-200 flex items-center rounded-xl ${classNameIsError} ${classNameIsDisabled}`}>
         <input
           {...props}
           ref={ref}
@@ -57,19 +55,23 @@ const Input: FC<IInput> = ({
           value={value}
         />
         {value && (
-          <div aria-hidden onClick={handleClearInput} className='p-3 cursor-pointer'>
+          <div
+            aria-hidden
+            onClick={handleClearInput}
+            className="p-3 cursor-pointer">
             <div
-              className={`w-6 h-6 rounded-full bg-natural-600 flex justify-center items-center`}
-            >
-              <CloseIcon className='w-1/2 h-1/2 [&>path]:stroke-natural-100/50' />
+              className={`w-6 h-6 rounded-full bg-natural-600 flex justify-center items-center`}>
+              <CloseIcon className="w-1/2 h-1/2 [&>path]:stroke-natural-100/50" />
             </div>
           </div>
         )}
         {!value && rightIcon && (
-          <div className='mr-4 ml-2 flex justify-center items-center'>{rightIcon}</div>
+          <div className="mr-4 ml-2 flex justify-center items-center">
+            {rightIcon}
+          </div>
         )}
       </div>
-      {error && <div className='text-sm text-warning-100'>{error}</div>}
+      {error && <div className="text-sm text-warning-100">{error}</div>}
     </div>
   );
 };
