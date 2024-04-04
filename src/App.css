@@ -1,67 +1,3 @@
-@font-face {
-  font-weight: 400;
-  font-family: ProtoGrotesk;
-  font-display: swap;
-  src: url("./assets/fonts/ProtoGrotesk/ProtoGrotesk-Regular.ttf");
-}
-
-@font-face {
-  font-weight: 500;
-  font-family: ProtoGrotesk;
-  font-display: swap;
-  src: url("./assets/fonts/ProtoGrotesk/ProtoGrotesk-Medium.ttf");
-}
-
-@font-face {
-  font-weight: 700;
-  font-family: ProtoGrotesk;
-  font-display: swap;
-  src: url("./assets/fonts/ProtoGrotesk/ProtoGrotesk-Bold.ttf");
-}
-
-@font-face {
-  font-weight: 400;
-  font-family: SuisseIntl;
-  font-display: swap;
-  src: url("./assets/fonts/SuisseIntl/SuisseIntl-Regular.otf");
-}
-
-@font-face {
-  font-weight: 500;
-  font-family: SuisseIntl;
-  font-display: swap;
-  src: url("./assets/fonts/SuisseIntl/SuisseIntl-Medium.otf");
-}
-
-@font-face {
-  font-weight: 600;
-  font-family: SuisseIntl;
-  font-display: swap;
-  src: url("./assets/fonts/SuisseIntl/SuisseIntl-SemiBold.otf");
-}
-
-@font-face {
-  font-weight: 700;
-  font-family: SuisseIntl;
-  font-display: swap;
-  src: url("./assets/fonts/SuisseIntl/SuisseIntl-Bold.otf");
-}
-
-@font-face {
-  font-weight: 800;
-  font-family: SuisseIntl;
-  font-display: swap;
-  src: url("./assets/fonts/SuisseIntl/SuisseIntl-Black.otf");
-}
-
-@font-face {
-  font-weight: 400;
-  font-style: italic;
-  font-family: SuisseIntl;
-  font-display: swap;
-  src: url("./assets/fonts/SuisseIntl/SuisseIntl-RegularItalic.otf");
-}
-
 span,
 div,
 p,
@@ -80,14 +16,6 @@ ul,
 ol,
 textarea {
   font-family: Onest, sans-serif;
-}
-
-.suisseIntl {
-  font-family: SuisseIntl, sans-serif;
-}
-
-.protoGrotesk {
-  font-family: ProtoGrotesk, sans-serif;
 }
 
 input::-webkit-outer-spin-button,
