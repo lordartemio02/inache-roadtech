@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { BasePage, NotFoundPage } from "../pages";
+import { BasePage, NotFoundPage, MapPage } from "../pages";
 
 const basicRoutes = [
   {
@@ -9,6 +9,10 @@ const basicRoutes = [
   {
     path: "/",
     element: <BasePage />,
+  },
+  {
+    path: "/map",
+    element: <MapPage />,
   },
 ];
 
