@@ -9,7 +9,7 @@ import {
   FetchBaseQueryError,
   FetchBaseQueryMeta,
 } from "@reduxjs/toolkit/query/react";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { AccessTokenQuery } from "../interfaces/AccessTokenQuery";
 import { UserTokenState } from "../interfaces/UserTokenState";
 import {
