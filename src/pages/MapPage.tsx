@@ -1,14 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { unloadMap } from "../store/slices/mapSlice";
+import { loadMap } from "../store/thunk/mapThunk";
 import {
-  // LoadingStates,
+  LoadingStates,
   TLoadingState,
   mapContainerId,
 } from "../services/yandexMap";
+import Header from "../components/Header";
+import { Loader } from "../components/Loader";
 
 import Event from '../services/eventEmitter';
-import { loadMap } from "../store/thunk/mapThunk";
+
 
 interface IEventEmitter {
   loadingState?: TLoadingState,
@@ -48,12 +51,15 @@ export const MapPage = () => {
     };
   }, [handleEventEmitter]);
 
-
-  // if (progress !== LoadingStates.ready) {
-  //   return 'LOADING';
-  // }
-
   return (
-    <div id={mapContainerId} />
+    <div className="flex flex-col min-h-screen">
+      <Header />
+
+      <div className="w-full">
+        {progress !== LoadingStates.ready && <Loader />}
+
+        <div id={mapContainerId} />
+      </div>
+    </div>
   );
 };

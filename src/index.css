@@ -113,7 +113,6 @@ a:hover {
   min-height: 100vh;
 }
 
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -136,6 +135,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#YandexMapId {
+  margin-top: 198px;
+}
+
+@media (max-width: 768px) {
+  #YandexMapId {
+    margin-top: 172px;
+  }
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -148,3 +157,36 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.loader__container {
+  min-height: calc(100vh - 172px);
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(0deg, rgba(255, 61, 0, 0.2) 33%, #FF3000 100%);
+  box-sizing: border-box;
+  animation: loaderRotation 1s linear infinite;
+}
+
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+@keyframes loaderRotation {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg)}
+} 
