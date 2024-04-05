@@ -44,14 +44,14 @@ const Input: FC<IInput> = ({
         </label>
       )}
       <div
-        className={`overflow-hidden hover:outline-2 outline outline-natural-500 bg-white focus-within:outline-2 focus-within:outline-yellow-200 flex items-center rounded-xl ${classNameIsError} ${classNameIsDisabled}`}>
+        className={`overflow-hidden  hover:outline-2 rounded-12 outline outline-1 outline-natural-500 bg-white focus-within:outline-2 focus-within:outline-yellow-200 flex items-center ${classNameIsError} ${classNameIsDisabled}`}>
         <input
           {...props}
           ref={ref}
           id={id}
           onChange={onChange}
           disabled={disabled}
-          className={`w-full pl-4 py-[13px] outline-none placeholder:text-base font-medium placeholder:text-natural-400`}
+          className={`w-full rounded-12 pl-4 py-3 outline-none placeholder:text-base font-medium placeholder:text-natural-400`}
           value={value}
         />
         {value && (

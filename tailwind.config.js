@@ -15,6 +15,7 @@ export default {
       protoGrotesk: ["ProtoGrotesk"],
     },
     colors: {
+      ...colors,
       natural: {
         100: "#1D1D1D",
         200: "#2F2F2F",
@@ -55,82 +56,75 @@ export default {
       },
     },
     fontSize: {
-      pc: {
-        h1: [rem(44), { fontWeight: "700", lineHeight: rem(46) }],
-        h2: [rem(32), { fontWeight: "700", lineHeight: rem(32) }],
-        h3: [rem(24), { fontWeight: "700", lineHeight: rem(28) }],
-        h4: [rem(20), { fontWeight: "700", lineHeight: rem(24) }],
-        subTitle: [rem(18), { fontWeight: "400", lineHeight: rem(24) }],
-      },
-      tablet: {
-        h1: [rem(36), { fontWeight: "700", lineHeight: rem(40) }],
-        h2: [rem(28), { fontWeight: "700", lineHeight: rem(32) }],
-        h3: [rem(20), { fontWeight: "700", lineHeight: rem(24) }],
-        h4: [rem(18), { fontWeight: "700", lineHeight: rem(22) }],
-        subTitle: [rem(18), { fontWeight: "400", lineHeight: rem(24) }],
-      },
-      mobile: {
-        h1: [rem(32), { fontWeight: "700", lineHeight: rem(36) }],
-        h2: [rem(24), { fontWeight: "700", lineHeight: rem(38) }],
-        h3: [rem(18), { fontWeight: "700", lineHeight: rem(22) }],
-        h4: [rem(16), { fontWeight: "700", lineHeight: rem(20) }],
-        subTitle: [rem(16), { fontWeight: "400", lineHeight: rem(22) }],
-      },
-      body: {
-        p1: [rem(16), { fontWeight: "400", lineHeight: rem(24) }],
-        p2: [rem(14), { fontWeight: "400", lineHeight: rem(22) }],
-        p3: [rem(12), { fontWeight: "400", lineHeight: rem(18) }],
-      },
+      "pc-h1": [rem(44), { fontWeight: "700", lineHeight: rem(46) }],
+      "pc-h2": [rem(32), { fontWeight: "700", lineHeight: rem(36) }],
+      "pc-h3": [rem(24), { fontWeight: "700", lineHeight: rem(28) }],
+      "pc-h4": [rem(20), { fontWeight: "700", lineHeight: rem(24) }],
+      "pc-subTitle": [rem(18), { fontWeight: "400", lineHeight: rem(24) }],
+
+      "tablet-h1": [rem(36), { fontWeight: "700", lineHeight: rem(40) }],
+      "tablet-h2": [rem(28), { fontWeight: "700", lineHeight: rem(32) }],
+      "tablet-h3": [rem(20), { fontWeight: "700", lineHeight: rem(24) }],
+      "tablet-h4": [rem(18), { fontWeight: "700", lineHeight: rem(22) }],
+      "tablet-subTitle": [rem(18), { fontWeight: "400", lineHeight: rem(24) }],
+
+      "mobile-h1": [rem(32), { fontWeight: "700", lineHeight: rem(36) }],
+      "mobile-h2": [rem(24), { fontWeight: "700", lineHeight: rem(38) }],
+      "mobile-h3": [rem(18), { fontWeight: "700", lineHeight: rem(22) }],
+      "mobile-h4": [rem(16), { fontWeight: "700", lineHeight: rem(20) }],
+      "mobile-subTitle": [rem(16), { fontWeight: "400", lineHeight: rem(22) }],
+
+      "body-p1": [rem(16), { fontWeight: "400", lineHeight: rem(24) }],
+      "body-p2": [rem(14), { fontWeight: "400", lineHeight: rem(22) }],
+      "body-p3": [rem(12), { fontWeight: "400", lineHeight: rem(18) }],
+
       // buttons, highlights, controls
-      bhs: {
-        l: [rem(16), { fontWeight: "600", lineHeight: rem(24) }],
-        m: [rem(14), { fontWeight: "600", lineHeight: rem(20) }],
-        s: [rem(14), { fontWeight: "600", lineHeight: rem(16) }],
-        xs: [rem(12), { fontWeight: "600", lineHeight: rem(16) }],
-        xxs: [rem(10), { fontWeight: "600", lineHeight: rem(12) }],
-      },
-      italic: {
-        l: [
-          rem(32),
-          { fontWeight: "900", fontStyle: "italic", lineHeight: rem(40) },
-        ],
-        m: [
-          rem(28),
-          { fontWeight: "900", fontStyle: "italic", lineHeight: rem(32) },
-        ],
-        s: [
-          rem(16),
-          { fontWeight: "900", fontStyle: "italic", lineHeight: rem(24) },
-        ],
-        p1: [
-          rem(16),
-          { fontWeight: "400", fontStyle: "italic", lineHeight: rem(24) },
-        ],
-        p2: [
-          rem(14),
-          { fontWeight: "400", fontStyle: "italic", lineHeight: rem(22) },
-        ],
-        p3: [
-          rem(12),
-          { fontWeight: "400", fontStyle: "italic", lineHeight: rem(18) },
-        ],
-      },
-      bold: {
-        l: [rem(32), { fontWeight: "800", lineHeight: rem(40) }],
-        m: [rem(28), { fontWeight: "800", lineHeight: rem(32) }],
-        s: [rem(16), { fontWeight: "800", lineHeight: rem(24) }],
-        sLight: [rem(16), { fontWeight: "700", lineHeight: rem(24) }],
-      },
-      other: {
-        menu: [rem(16), { fontWeight: "600", lineHeight: rem(22) }],
-        mainPageHeading: [rem(64), { fontWeight: "700", lineHeight: rem(70) }],
-      },
-      cards: {
-        l: [
-          rem(22),
-          { fontWeight: "700", lineHeight: rem(28), letterSpacing: "-0.5px" },
-        ],
-      },
+      "bhs-l": [rem(16), { fontWeight: "600", lineHeight: rem(24) }],
+      "bhs-m": [rem(14), { fontWeight: "600", lineHeight: rem(20) }],
+      "bhs-s": [rem(14), { fontWeight: "600", lineHeight: rem(16) }],
+      "bhs-xs": [rem(12), { fontWeight: "600", lineHeight: rem(16) }],
+      "bhs-xxs": [rem(10), { fontWeight: "600", lineHeight: rem(12) }],
+
+      "italic-l": [
+        rem(32),
+        { fontWeight: "900", fontStyle: "italic", lineHeight: rem(40) },
+      ],
+      "italic-m": [
+        rem(28),
+        { fontWeight: "900", fontStyle: "italic", lineHeight: rem(32) },
+      ],
+      "italic-s": [
+        rem(16),
+        { fontWeight: "900", fontStyle: "italic", lineHeight: rem(24) },
+      ],
+      "italic-p1": [
+        rem(16),
+        { fontWeight: "400", fontStyle: "italic", lineHeight: rem(24) },
+      ],
+      "italic-p2": [
+        rem(14),
+        { fontWeight: "400", fontStyle: "italic", lineHeight: rem(22) },
+      ],
+      "italic-p3": [
+        rem(12),
+        { fontWeight: "400", fontStyle: "italic", lineHeight: rem(18) },
+      ],
+
+      "bold-l": [rem(32), { fontWeight: "800", lineHeight: rem(40) }],
+      "bold-m": [rem(28), { fontWeight: "800", lineHeight: rem(32) }],
+      "bold-s": [rem(16), { fontWeight: "800", lineHeight: rem(24) }],
+      "bold-sLight": [rem(16), { fontWeight: "700", lineHeight: rem(24) }],
+
+      "other-menu": [rem(16), { fontWeight: "600", lineHeight: rem(22) }],
+      "other-mainPageHeading": [
+        rem(64),
+        { fontWeight: "700", lineHeight: rem(70) },
+      ],
+
+      "cards-l": [
+        rem(22),
+        { fontWeight: "700", lineHeight: rem(28), letterSpacing: "-0.5px" },
+      ],
     },
     boxShadow: {
       promo: "inset 0px -1px 0px #E4E7EC",
@@ -153,13 +147,11 @@ export default {
       "2xl": "1920px",
     },
     borderRadius: {
-      small: rem(4),
-      medium: rem(8),
-      large: rem(16),
       half: "50%",
       full: "100%",
       2: rem(2),
       6: rem(6),
+      8: rem(8),
       10: rem(10),
       12: rem(12),
       14: rem(14),

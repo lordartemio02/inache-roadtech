@@ -22,7 +22,7 @@ const Header: FC = () => {
 
   return (
     <header
-      className={`z-50 fixed top-0 left-0 w-full bg-white ${
+      className={`z-50 fixed top-0 left-0 w-full bg-white z-[100] ${
         isOpenMenu ? "rounded-b-3xl" : ""
       }`}>
       <div className="container flex justify-between items-center py-3">
