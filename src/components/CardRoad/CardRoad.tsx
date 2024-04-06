@@ -16,7 +16,7 @@ const CardRoad: FC<CardRoadProps> = (props) => {
   const [indexDay, setIndexDay] = useState(0);
   const nav = useNavigate();
 
-  const { title, images, rating, onClick, onLike, isLike } = props;
+  const { title, images, onClick, onLike, isLike } = props;
 
   return (
     <div className="rounded-[20px] overflow-hidden flex flex-col h-full">

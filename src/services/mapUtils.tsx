@@ -1,14 +1,18 @@
 import {
+  BalloonButtonTitles,
+  BalloonDescription,
+  BalloonImagesSrc,
+  BalloonTitles,
+} from "../components/Balloon/Balloon.interface";
+import { BalloonInfo } from "../components/BalloonInfo";
+import Event from "../services/eventEmitter";
+import {
   IExcursionPoints,
-  IMapPoints,
   IPartnersPoints,
   IPromoPoints,
-  IRoutePoints
+  IRoutePoints,
 } from "../store/thunk/mapThunk";
-import Event from '../services/eventEmitter';
 import { IPoint, TLoadingState } from "./yandexMap";
-import { BalloonInfo } from "../components/BalloonInfo";
-import { BalloonButtonTitles, BalloonDescription, BalloonImagesSrc, BalloonTitles } from "../components/Balloon/Balloon.interface";
 
 const balloonCloseButtonDataId = "balloonCloseButtonDataId";
 
@@ -27,20 +31,20 @@ export interface IMapPoint {
   routeId: string;
   route: string;
   stories: string[];
-};
+}
 
 export interface IMapPoints {
   points: IMapPoint[];
-};
+}
 
 const enum MarkerTypes {
   start = "start",
   route = "route",
-  promo ="promo",
-  partners ="partners",
+  promo = "promo",
+  partners = "partners",
   excursion = "excursion",
   selfie = "selfie",
-};
+}
 
 export const onPinClick = (pinData: any) => {
   Event.emit("add", { pinData });
@@ -50,7 +54,9 @@ export const emitMapLoadState = (state: TLoadingState) => {
   Event.emit("add", { loadingState: state });
 };
 
-const prepareIconComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints) => {
+const prepareIconComponent = (
+  point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
+) => {
   switch (point.type) {
     case MarkerTypes.route:
       return (
@@ -67,21 +73,17 @@ const prepareIconComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoin
         // />
       );
     case MarkerTypes.promo:
-      return (
-        <span>Point of promo</span>
-      );
+      return <span>Point of promo</span>;
     case MarkerTypes.partners:
-      return (
-        <span>Point of partners</span>
-      );
+      return <span>Point of partners</span>;
     default:
-      return (
-        <span>Point of excursion</span>
-      );
+      return <span>Point of excursion</span>;
   }
 };
 
-const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints) => {
+const prepareBalloonComponent = (
+  point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
+) => {
   switch (point.type) {
     case MarkerTypes.route:
       return (
@@ -109,24 +111,19 @@ const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersP
         />
       );
     case MarkerTypes.partners:
-      return (
-        <span>Point of partners</span>
-      );
+      return <span>Point of partners</span>;
     default:
-      return (
-        <span>Point of excursion</span>
-      );
+      return <span>Point of excursion</span>;
   }
 };
 
-
-export const generatePointsWithContent = (points: IMapPoints) => {
-  return points.promoPoints.map((point) => {
+export const generatePointsWithContent = (points: any) => {
+  return points.promoPoints.map((point: any) => {
     return {
       iconComponent: prepareIconComponent(point),
       coordinates: point.coordinates,
       balloonComponent: prepareBalloonComponent(point),
       balloonCloseButtonDataId: balloonCloseButtonDataId,
-    } as IPoint
+    } as IPoint;
   });
 };

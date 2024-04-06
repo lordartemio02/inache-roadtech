@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import ButtonClose from '../ButtonClose';
+import ButtonClose from "../ButtonClose";
 
 interface IModal {
   children: React.ReactNode;
@@ -23,10 +23,13 @@ const Modal: FC<IModal> = ({ children, className, open, onClose, onOpen }) => {
   return (
     <div
       aria-hidden
-      className='z-[999] bg-natural-100/50 fixed top-0 left-0 w-full h-screen overflow-y-auto flex justify-center items-center'
-    >
+      className="z-[999] bg-natural-100/50 fixed top-0 left-0 w-full h-screen overflow-y-auto flex justify-center items-center">
       <div className={`p-6 rounded-[20px] bg-white relative ${className}`}>
-        <ButtonClose className='absolute right-0 top-0' onClick={handleClick} />
+        <ButtonClose
+          id="close"
+          className="absolute right-0 top-0"
+          onClick={handleClick}
+        />
         {children}
       </div>
     </div>

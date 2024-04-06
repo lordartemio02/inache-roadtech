@@ -19,7 +19,7 @@ import { TypesRoadSearch } from "../interfaces/TypesRoadSearch";
 const BasePage = () => {
   const [dateRange, setDateRange] = useState<(Date | null)[]>([null, null]);
   const [startDate, endDate] = dateRange;
-  const [searchValue, setSearchValue] = useState<string>("");
+  // const [searchValue, setSearchValue] = useState<string>("");
   const nav = useNavigate();
 
   const [typeSelected, setTypeSelected] = useState<string>(

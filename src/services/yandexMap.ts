@@ -1,8 +1,7 @@
-
-import ReactDOMServer from 'react-dom/server';
+import { ReactElement } from "react";
+import ReactDOMServer from "react-dom/server";
 import { IClassConstructor, IShape, layout } from "yandex-maps";
 import { loadScript } from "./loadScript";
-import { ReactElement } from "react";
 
 const YANDEX_API_KEY = "2abb6e36-ee29-4a88-9a1e-8c46287f042e";
 
@@ -15,19 +14,18 @@ export const enum LoadingStates {
   loading = "loading",
   ready = "ready",
   error = "error",
-};
+}
 
 export type TLoadingState = "unset" | "loading" | "ready" | "error";
 
 export let loadingState: TLoadingState = LoadingStates.unset;
-export let loadingPromise: Promise<void>
+export let loadingPromise: Promise<void>;
 
-type TMapInstance = any
+type TMapInstance = any;
 
-declare const ymaps: any
+declare const ymaps: any;
 
-let mapInstance: TMapInstance
-
+let mapInstance: TMapInstance;
 
 export const destroyMap = () => {
   if (!mapInstance) {
@@ -36,7 +34,7 @@ export const destroyMap = () => {
 
   mapInstance.destroy();
   mapInstance = undefined;
-}
+};
 
 export const setCenter = (coord: number[]) => {
   if (!mapInstance) {
@@ -45,15 +43,15 @@ export const setCenter = (coord: number[]) => {
 
   mapInstance?.setCenter(coord, defaultZoomValue, {
     checkZoomRange: true,
-  })
-}
+  });
+};
 
 interface ILoadMap {
-  version?: string,
-  updateLoadingState?: (state: TLoadingState) => void
+  version?: string;
+  updateLoadingState?: (state: TLoadingState) => void;
 }
 
-const loadMap = ({ updateLoadingState, version = "2.1"}: ILoadMap) => {
+const loadMap = ({ updateLoadingState, version = "2.1" }: ILoadMap) => {
   const src = `https://api-maps.yandex.ru/${version}/?lang=ru_RU&apikey=${YANDEX_API_KEY}`;
 
   switch (loadingState) {
@@ -70,26 +68,26 @@ const loadMap = ({ updateLoadingState, version = "2.1"}: ILoadMap) => {
               resolve();
 
               if (updateLoadingState) {
-                updateLoadingState(loadingState)
+                updateLoadingState(loadingState);
               }
             });
           },
           () => {
             loadingState = LoadingStates.error;
             reject();
-          },
+          }
         );
       });
 
       return loadingPromise;
   }
-}
+};
 
 interface IGenerateLayoutProps {
-  markup: string
-  onBuild?: (context: layout.templateBased.Base) => void
-  onDestroy?: (context: layout.templateBased.Base) => void
-  onGetShape?: (context: layout.templateBased.Base) => IShape
+  markup: string;
+  onBuild?: (context: layout.templateBased.Base) => void;
+  onDestroy?: (context: layout.templateBased.Base) => void;
+  onGetShape?: (context: layout.templateBased.Base) => IShape;
 }
 
 const generateLayout = ({
@@ -100,32 +98,32 @@ const generateLayout = ({
 }: IGenerateLayoutProps): IClassConstructor<layout.templateBased.Base> =>
   ymaps.templateLayoutFactory.createClass(markup, {
     build() {
-      this.constructor.superclass.build.call(this)
+      this.constructor.superclass.build.call(this);
 
       if (onBuild) {
-        onBuild(this)
+        onBuild(this);
       }
     },
 
     destroy() {
       if (onDestroy) {
-        onDestroy(this)
+        onDestroy(this);
       }
 
-      this.constructor.superclass.destroy.call(this)
+      this.constructor.superclass.destroy.call(this);
     },
 
     getShape() {
       if (onGetShape !== undefined) {
-        return onGetShape(this)
+        return onGetShape(this);
       }
 
       if (!ymaps.shape?.Rectangle) {
-        return null
+        return null;
       }
 
       const rect =
-        this.getParentElement()?.firstElementChild?.firstElementChild?.getBoundingClientRect()
+        this.getParentElement()?.firstElementChild?.firstElementChild?.getBoundingClientRect();
 
       const coords =
         rect === undefined
@@ -133,15 +131,17 @@ const generateLayout = ({
           : [
               [-rect.width / 2, -rect.height], // верхний левый угол относительно точки
               [rect.width / 2, 0], // нижний правый угол относительно точки
-            ]
+            ];
 
-      return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle(coords))
+      return new ymaps.shape.Rectangle(
+        new ymaps.geometry.pixel.Rectangle(coords)
+      );
     },
-  })
+  });
 
 const generateLayoutWithCloseButtons = (
   markup: string,
-  dataId?: string,
+  dataId?: string
 ): IClassConstructor<layout.templateBased.Base> =>
   generateLayout({
     markup,
@@ -151,42 +151,42 @@ const generateLayoutWithCloseButtons = (
       }
 
       const handleClick = (event: Event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        context.events.fire('userclose')
+        context.events.fire("userclose");
       };
 
       const parentNode = context.getParentElement();
       const closeButtons = parentNode.querySelectorAll(`[data-id=${dataId}]`);
 
       closeButtons.forEach((element: Element) => {
-        element.addEventListener('click', handleClick)
+        element.addEventListener("click", handleClick);
       });
     },
-  })
+  });
 
 export interface IPoint {
-  coordinates: number[]
-  iconComponent?: ReactElement
-  balloonComponent?: ReactElement
-  balloonCloseButtonDataId?: string
+  coordinates: number[];
+  iconComponent?: ReactElement;
+  balloonComponent?: ReactElement;
+  balloonCloseButtonDataId?: string;
 }
 
 interface IInitMapProps {
-  points?: IPoint[]
-  onPinClick?: (id: number) => void
-  emitMapLoadState?: (state: TLoadingState) => void
+  points?: IPoint[];
+  onPinClick?: (id: number) => void;
+  emitMapLoadState?: (state: TLoadingState) => void;
   // onBoundsChange?: (e: MapEvent) => void
 }
 
 export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
-  type: 'FeatureCollection',
+  type: "FeatureCollection",
   features: points.map((point, index) => ({
-    type: 'Feature',
+    type: "Feature",
     id: index,
-    geometry: { type: 'Point', coordinates: point.coordinates },
+    geometry: { type: "Point", coordinates: point.coordinates },
     options: {
-      pane: 'balloon',
+      pane: "balloon",
       hideIconOnBalloonOpen: false,
 
       iconLayout:
@@ -201,7 +201,7 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
       balloonLayout: point.balloonComponent
         ? generateLayoutWithCloseButtons(
             ReactDOMServer.renderToStaticMarkup(point.balloonComponent),
-            point.balloonCloseButtonDataId,
+            point.balloonCloseButtonDataId
           )
         : null,
     },
@@ -215,7 +215,7 @@ const prepareMapOptions = (top: string) => {
     position: {
       top,
       right: "10px",
-    }
+    },
   };
 
   return options;
@@ -236,39 +236,41 @@ const getMapOptions = (points: IPoint[], customButtons: any[]) => {
 
   return [
     {
-      center: points[0]?.coordinates || [55.739625, 37.54120],
+      center: points[0]?.coordinates || [55.739625, 37.5412],
       zoom: defaultZoomValue,
       controls: [geolocationControl, zoomControl, ...customButtons],
     },
     {
       buttonMaxWidth: 300,
-    }
-  ]
-}
+    },
+  ];
+};
 
-const init = ({ points, onPinClick }: IInitMapProps) => {
-  const geolocation = ymaps.geolocation;
-  const city = geolocation.city;
-  const country = geolocation.country;
+const init = ({ points }: IInitMapProps) => {
+  // const geolocation = ymaps.geolocation;
+  // const city = geolocation.city;
+  // const country = geolocation.country;
 
   // Объявляем набор опорных точек и массив индексов транзитных точек.
   const referencePoints = [
     "Москва, Ленинский проспект",
     "Москва, Льва Толстого, 16",
     "Москва, Кремлевская набережная",
-    "Москва, парк Сокольники"
+    "Москва, парк Сокольники",
   ];
   const viaIndexes = [2];
 
   // Создаем мультимаршрут и настраиваем его внешний вид с помощью опций.
-  var multiRoute = new ymaps.multiRouter.MultiRoute({
+  var multiRoute = new ymaps.multiRouter.MultiRoute(
+    {
       referencePoints: points?.map(({ coordinates }) => coordinates),
       params: {
         // viaIndexes,
         //Тип маршрутизации - пешеходная маршрутизация.
-        routingMode: 'pedestrian' // общест. тран - 'masstransit', авто auto
-      }
-  }, {
+        routingMode: "pedestrian", // общест. тран - 'masstransit', авто auto
+      },
+    },
+    {
       // Внешний вид путевых точек.
       wayPointStartIconColor: "#333",
       wayPointStartIconFillColor: "#B3B3B3",
@@ -308,68 +310,72 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
       routeActivePedestrianSegmentStrokeColor: "#007470",
 
       // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
-      boundsAutoApply: true
-  });
+      boundsAutoApply: true,
+    }
+  );
 
   // Настраиваем внешний вид второй точки через прямой доступ к ней.
   // customizeSecondPoint();
 
   // Создаем кнопки.
   var removePointsButton = new ymaps.control.Button({
-          data: {content: "Удалить промежуточные точки"},
-          options: {selectOnClick: true}
-      }),
-      routingModeButton = new ymaps.control.Button({
-          data: {content: "Пешком"},
-          options: {selectOnClick: true}
-      });
+      data: { content: "Удалить промежуточные точки" },
+      options: { selectOnClick: true },
+    }),
+    routingModeButton = new ymaps.control.Button({
+      data: { content: "Пешком" },
+      options: { selectOnClick: true },
+    });
 
   // Объявляем обработчики для кнопок.
-  removePointsButton.events.add('select', function () {
-      multiRoute.model.setReferencePoints([
-          referencePoints[0],
-          referencePoints[referencePoints.length - 1]
-      ], []);
+  removePointsButton.events.add("select", function () {
+    multiRoute.model.setReferencePoints(
+      [referencePoints[0], referencePoints[referencePoints.length - 1]],
+      []
+    );
   });
 
-  removePointsButton.events.add('deselect', function () {
-      multiRoute.model.setReferencePoints(referencePoints, viaIndexes);
-      // Т.к. вторая точка была удалена, нужно заново ее настроить.
-      customizeSecondPoint();
+  removePointsButton.events.add("deselect", function () {
+    multiRoute.model.setReferencePoints(referencePoints, viaIndexes);
+    // Т.к. вторая точка была удалена, нужно заново ее настроить.
+    customizeSecondPoint();
   });
 
-  routingModeButton.events.add('select', function () {
-      multiRoute.model.setParams({routingMode: 'pedestrian'}, true);
+  routingModeButton.events.add("select", function () {
+    multiRoute.model.setParams({ routingMode: "pedestrian" }, true);
   });
 
-  routingModeButton.events.add('deselect', function () {
-      multiRoute.model.setParams({routingMode: 'auto'}, true);
+  routingModeButton.events.add("deselect", function () {
+    multiRoute.model.setParams({ routingMode: "auto" }, true);
   });
 
   // Функция настройки внешнего вида второй точки.
   function customizeSecondPoint() {
-      /**
-       * Ждем, пока будут загружены данные мультимаршрута и созданы отображения путевых точек.
-       */
-      multiRoute.model.events.once("requestsuccess", function () {
-          var yandexWayPoint = multiRoute.getWayPoints().get(1);
-          // Создаем балун у метки второй точки.
-          ymaps.geoObject.addon.balloon.get(yandexWayPoint);
-          yandexWayPoint.options.set({
-              preset: "islands#grayStretchyIcon",
-              iconContentLayout: ymaps.templateLayoutFactory.createClass(
-                  '<span style="color: red;">Я</span>ндекс'
-              ),
-              balloonContentLayout: ymaps.templateLayoutFactory.createClass(
-                  '{{ properties.address|raw }}'
-              )
-          });
+    /**
+     * Ждем, пока будут загружены данные мультимаршрута и созданы отображения путевых точек.
+     */
+    multiRoute.model.events.once("requestsuccess", function () {
+      var yandexWayPoint = multiRoute.getWayPoints().get(1);
+      // Создаем балун у метки второй точки.
+      ymaps.geoObject.addon.balloon.get(yandexWayPoint);
+      yandexWayPoint.options.set({
+        preset: "islands#grayStretchyIcon",
+        iconContentLayout: ymaps.templateLayoutFactory.createClass(
+          '<span style="color: red;">Я</span>ндекс'
+        ),
+        balloonContentLayout: ymaps.templateLayoutFactory.createClass(
+          "{{ properties.address|raw }}"
+        ),
       });
+    });
   }
 
   const mapOptionControlsButtons = [removePointsButton, routingModeButton];
 
-  const mapOptions = getMapOptions(points as IPoint[], mapOptionControlsButtons)
+  const mapOptions = getMapOptions(
+    points as IPoint[],
+    mapOptionControlsButtons
+  );
 
   // Создаем карту с добавленной на нее кнопкой.
   mapInstance = new ymaps.Map(mapContainerId, mapOptions[0], mapOptions[1]);
@@ -377,25 +383,25 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
   // Добавляем мультимаршрут на карту.
   mapInstance.geoObjects.add(multiRoute);
 
-  const objectManager = new ymaps.ObjectManager(mapOptions)
+  const objectManager = new ymaps.ObjectManager(mapOptions);
   mapInstance.geoObjects.add(multiRoute);
-  mapInstance.geoObjects.add(objectManager)
+  mapInstance.geoObjects.add(objectManager);
 
-  const geoData = generateGeoData(points as IPoint[])
-  objectManager.add(geoData)
+  const geoData = generateGeoData(points as IPoint[]);
+  objectManager.add(geoData);
 };
 
 export const prepareMap = async ({
   points,
   onPinClick,
   emitMapLoadState,
-  // onBoundsChange,
-}: IInitMapProps) => {
-  await loadMap({ updateLoadingState: emitMapLoadState })
+}: // onBoundsChange,
+IInitMapProps) => {
+  await loadMap({ updateLoadingState: emitMapLoadState });
 
   init({
     points,
     onPinClick,
     // onBoundsChange,
-  })
-}
+  });
+};

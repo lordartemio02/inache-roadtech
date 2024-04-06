@@ -1,39 +1,41 @@
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { unloadMap } from "../store/slices/mapSlice";
-import { loadMap } from "../store/thunk/mapThunk";
-import {
-  LoadingStates,
-  TLoadingState,
-  mapContainerId,
-} from "../services/yandexMap";
 import Header from "../components/Header";
 import { Loader } from "../components/Loader";
+import {
+  LoadingStates,
+  mapContainerId,
+  TLoadingState,
+} from "../services/yandexMap";
+import { unloadMap } from "../store/slices/mapSlice";
+import { loadMap } from "../store/thunk/mapThunk";
 
-import Event from '../services/eventEmitter';
-
+import Event from "../services/eventEmitter";
 
 interface IEventEmitter {
-  loadingState?: TLoadingState,
-  pinData?: any,
+  loadingState?: TLoadingState;
+  pinData?: any;
 }
 
 export const MapPage = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [progress, setProgress] = useState<TLoadingState>();
 
-  
-  const handleEventEmitter = useCallback(({ loadingState, pinData }: IEventEmitter) => {
-    if (loadingState) {
-      setProgress(loadingState);
-    }
+  const handleEventEmitter = useCallback(
+    ({ loadingState, pinData }: IEventEmitter) => {
+      if (loadingState) {
+        setProgress(loadingState);
+      }
 
-    if (pinData) {
-      console.log(pinData, progress);
-    }
-  }, [setProgress]);
+      if (pinData) {
+        console.log(pinData, progress);
+      }
+    },
+    [setProgress]
+  );
 
   useEffect(() => {
+    // @ts-ignore
     dispatch(loadMap());
 
     return () => {

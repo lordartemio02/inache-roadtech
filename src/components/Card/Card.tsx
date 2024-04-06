@@ -11,7 +11,6 @@ const Card: FC<ICard> = ({
   geo,
   type,
   location,
-  onClick,
   onLike,
   isLike,
 }) => {
