@@ -2,9 +2,27 @@
   {
     "id": "id-test1",
     "images": [
-      "https://i.ucrazy.ru/files/pics/2023.10/01.webp",
-      "https://yakartinki.ru/sites/default/files/2023-12/e5453dadacd18ac1e64c6ef32127ae3b.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUikNbj12m3NOjV7h0X0Z4wPE_p_CxjY0h_9UA_peG3Q&s"
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8"
+      }
     ],
     "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
     "price": 400,
@@ -17,13 +35,31 @@
   {
     "id": "id-test2",
     "images": [
-      "https://i.ucrazy.ru/files/pics/2023.10/01.webp",
-      "https://yakartinki.ru/sites/default/files/2023-12/e5453dadacd18ac1e64c6ef32127ae3b.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUikNbj12m3NOjV7h0X0Z4wPE_p_CxjY0h_9UA_peG3Q&s"
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      }
     ],
-    "title": "Экскурсия",
+    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
     "price": 400,
-    "rating": "3.2",
+    "rating": "5.2",
     "geo": "Москва",
     "time": "45 мин - 2 часа",
     "type": "Экскурсия",
@@ -32,13 +68,31 @@
   {
     "id": "id-test3",
     "images": [
-      "https://i.ucrazy.ru/files/pics/2023.10/01.webp",
-      "https://yakartinki.ru/sites/default/files/2023-12/e5453dadacd18ac1e64c6ef32127ae3b.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUikNbj12m3NOjV7h0X0Z4wPE_p_CxjY0h_9UA_peG3Q&s"
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      }
     ],
-    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району",
+    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
     "price": 400,
-    "rating": "2.2",
+    "rating": "5.2",
     "geo": "Москва",
     "time": "45 мин - 2 часа",
     "type": "Экскурсия",
@@ -47,13 +101,31 @@
   {
     "id": "id-test4",
     "images": [
-      "https://i.ucrazy.ru/files/pics/2023.10/01.webp",
-      "https://yakartinki.ru/sites/default/files/2023-12/e5453dadacd18ac1e64c6ef32127ae3b.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUikNbj12m3NOjV7h0X0Z4wPE_p_CxjY0h_9UA_peG3Q&s"
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      }
     ],
-    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району",
+    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
     "price": 400,
-    "rating": "8.2",
+    "rating": "5.2",
     "geo": "Москва",
     "time": "45 мин - 2 часа",
     "type": "Экскурсия",
@@ -62,13 +134,64 @@
   {
     "id": "id-test5",
     "images": [
-      "https://i.ucrazy.ru/files/pics/2023.10/01.webp",
-      "https://yakartinki.ru/sites/default/files/2023-12/e5453dadacd18ac1e64c6ef32127ae3b.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUikNbj12m3NOjV7h0X0Z4wPE_p_CxjY0h_9UA_peG3Q&s"
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      }
     ],
-    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району",
+    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
     "price": 400,
-    "rating": "9.2",
+    "rating": "5.2",
+    "geo": "Москва",
+    "time": "45 мин - 2 часа",
+    "type": "Экскурсия",
+    "location": "Пешеходные, обзорные"
+  },
+  {
+    "id": "id-test6",
+    "images": [
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      },
+      {
+        "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+        "image": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8",
+        "type": "Экскурсия",
+        "desc": "Экскурсия по Таганскому району города Москва",
+        "avatar": "https://cms.russpass.ru/v1/file/639b207b810482a5a19eadc8"
+      }
+    ],
+    "title": "Экскурсия по Таганскому району города Москва экскурсия по Таганскому району sadsadasdasdasdasd",
+    "price": 400,
+    "rating": "5.2",
     "geo": "Москва",
     "time": "45 мин - 2 часа",
     "type": "Экскурсия",

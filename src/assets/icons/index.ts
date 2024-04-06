@@ -4,6 +4,7 @@ import BookIcon from "./BookIcon.svg?react";
 import CafeIcon from "./CafeIcon.svg?react";
 import CalendarIcon from "./CalendarIcon.svg";
 import CameraIcon from "./CameraIcon.svg?react";
+import ChevronLeft from "./ChevronLeft.svg?react";
 import circleFlagsIcon from "./circleFlagsIcon.svg";
 import ClockIcon from "./ClockIcon.svg?react";
 import CloseIcon from "./CloseIcon.svg?react";
@@ -40,8 +41,8 @@ export {
   SearchIcon,
   SuitcaseIcon,
   circleFlagsIcon,
-  dzenIcon,
   mosturizmIcon,
+  dzenIcon,
   okIcon,
   telegramIcon,
   userIcon,
@@ -53,4 +54,5 @@ export {
   RoadIcon,
   MuseumIcon,
   AdvantageIcon,
+  ChevronLeft,
 };

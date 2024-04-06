@@ -5,30 +5,19 @@ import { tags } from "../../mock/tagsList";
 import Button from "../Button";
 import CarouselKit from "../CarouselKit";
 import LikeButton from "../LikeButton";
-import Rating from "../Rating";
 import { CardRoadProps } from "./CardRoad.interface";
 
 const types = ["Пеший", "Велосипедный", "Автомобильный"];
 
-const CardRoad: FC<CardRoadProps> = ({
-  title,
-  images,
-  price,
-  geo,
-  time,
-  type,
-  location,
-  rating,
-  onClick,
-  onLike,
-  isLike,
-}) => {
+const CardRoad: FC<CardRoadProps> = (props) => {
   const [indexDay, setIndexDay] = useState(0);
+
+  const { title, images, rating, onClick, onLike, isLike } = props;
 
   return (
     <div className="rounded-[20px] overflow-hidden flex flex-col h-full">
       <div className="h-60 w-full relative">
-        <Rating total={rating} className="absolute top-2 left-2 z-10" />
+        {/* <Rating total={rating} className="absolute top-2 left-2 z-10" /> */}
         <CarouselKit images={images} />
         <LikeButton
           className="absolute top-4 right-4 z-10"
@@ -58,7 +47,7 @@ const CardRoad: FC<CardRoadProps> = ({
         </div>
       </div>
       <div className="p-4">
-        <h4 className="text-mobile-h4">Особенно нравится</h4>
+        <p className="text-mobile-subTitle mb-2">Особенно нравится</p>
         <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
             <div className="flex flex-row gap-1 items-center justify-center bg-natural-700 px-[10px] py-1 rounded-8">

@@ -1,12 +1,13 @@
+import { CarouselItem } from "../CarouselKit/CarouselKit.interfaces";
+
 export interface CardRoadProps {
   title: string;
-  images: string[];
-  price: number;
-  rating: string;
-  geo: string;
-  time: string;
+  images: CarouselItem[];
+  rating?: string;
+  geo?: string;
+  time?: string;
   type: string;
-  location: string;
+  location?: string;
   isLike: boolean;
   onClick: () => void;
   onLike: () => void;

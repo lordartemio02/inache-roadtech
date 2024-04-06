@@ -1,5 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
-import { BasePage, MapPage, NotFoundPage, RoadPage } from "../pages";
+import {
+  BasePage,
+  MapPage,
+  NotFoundPage,
+  RoadPage,
+  StoryLocationPage,
+} from "../pages";
 
 const basicRoutes = [
   {
@@ -17,6 +23,10 @@ const basicRoutes = [
   {
     path: "/road",
     element: <RoadPage />,
+  },
+  {
+    path: "/story-location",
+    element: <StoryLocationPage />,
   },
 ];
 

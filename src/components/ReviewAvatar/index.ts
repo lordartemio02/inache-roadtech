@@ -1,2 +1,2 @@
-import ReviewAvatar from "./ReviewAvatar";
-export default ReviewAvatar;
+import CircleImage from "./CircleImage";
+export default CircleImage;
