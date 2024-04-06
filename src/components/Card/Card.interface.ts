@@ -1,10 +1,9 @@
+import { CarouselItem } from "../CarouselKit/CarouselKit.interfaces";
+
 export interface ICard {
   title: string;
-  images: string[];
-  price: number;
-  rating: string;
+  images: CarouselItem[];
   geo: string;
-  time: string;
   type: string;
   location: string;
   isLike: boolean;

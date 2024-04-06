@@ -1,4 +1,10 @@
 export type CarouselKitProps = {
-  images: string[];
+  images: CarouselItem[];
   singleSlide?: boolean;
+};
+
+export type CarouselItem = {
+  image: string;
+  type?: string;
+  title?: string;
 };

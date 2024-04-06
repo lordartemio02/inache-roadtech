@@ -1,26 +1,16 @@
 import { FC } from "react";
 
-import {
-  BookIcon,
-  CameraIcon,
-  ClockIcon,
-  MapPinIcon,
-} from "../../assets/icons";
-import Button from "../Button";
+import { BookIcon, CameraIcon, MapPinIcon } from "../../assets/icons";
 import CarouselKit from "../CarouselKit";
 import LikeButton from "../LikeButton";
-import Rating from "../Rating";
 import { ICard } from "./Card.interface";
 
 const Card: FC<ICard> = ({
   title,
   images,
-  price,
   geo,
-  time,
   type,
   location,
-  rating,
   onClick,
   onLike,
   isLike,
@@ -28,7 +18,7 @@ const Card: FC<ICard> = ({
   return (
     <div className="rounded-[20px] overflow-hidden bg-natural-700 flex flex-col h-full">
       <div className="h-60 w-full relative">
-        <Rating total={rating} className="absolute top-4 left-4 z-10" />
+        {/* <Rating total={rating} className="absolute top-4 left-4 z-10" /> */}
         <CarouselKit images={images} />
         <LikeButton
           className="absolute top-4 right-4 z-10"
@@ -50,10 +40,10 @@ const Card: FC<ICard> = ({
               <MapPinIcon />
               {geo}
             </div>
-            <div className="flex gap-1 items-center text-body-p3">
+            {/* <div className="flex gap-1 items-center text-body-p3">
               <ClockIcon />
               {time}
-            </div>
+            </div> */}
             <div className="flex gap-1 items-center text-body-p3">
               <BookIcon />
               {location}
@@ -61,9 +51,9 @@ const Card: FC<ICard> = ({
           </div>
         </div>
 
-        <Button subtitle="Купить билеты" onClick={onClick}>
+        {/* <Button subtitle="Купить билеты" onClick={onClick}>
           от {price} ₽
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
