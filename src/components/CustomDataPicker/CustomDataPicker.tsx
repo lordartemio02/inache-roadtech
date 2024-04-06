@@ -33,7 +33,7 @@ const CustomDataPicker: FC<ReactDatePickerProps<true, true>> = ({
     <DatePicker
       {...props}
       showIcon
-      className={`w-full rounded-xl hover:outline-2 outline outline-natural-500 bg-white focus-within:outline-2 focus-within:outline-yellow-200 placeholder:text-base placeholder:font-medium placeholder:text-natural-100 !py-[13px] !pr-4 !pl-12 focus:outline-yellow-200 ${className}`}
+      className={`w-full rounded-12 hover:outline-2 outline outline-1 outline-natural-500 bg-white focus-within:outline-2 focus-within:outline-yellow-200 placeholder:text-base placeholder:font-medium placeholder:text-natural-100 !py-3 !pr-4 !pl-12 focus:outline-yellow-200 ${className}`}
       locale={"ru"}
       minDate={startOfMonth}
       calendarIconClassname="!pl-4 !py-3"

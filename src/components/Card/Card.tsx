@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Carousel from "react-multi-carousel";
 
 import {
   BookIcon,
@@ -8,16 +7,10 @@ import {
   MapPinIcon,
 } from "../../assets/icons";
 import Button from "../Button";
+import CarouselKit from "../CarouselKit";
 import LikeButton from "../LikeButton";
 import Rating from "../Rating";
 import { ICard } from "./Card.interface";
-
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 320 },
-    items: 1,
-  },
-};
 
 const Card: FC<ICard> = ({
   title,
@@ -36,29 +29,12 @@ const Card: FC<ICard> = ({
     <div className="rounded-[20px] overflow-hidden bg-natural-700 flex flex-col h-full">
       <div className="h-60 w-full relative">
         <Rating total={rating} className="absolute top-4 left-4 z-10" />
-
+        <CarouselKit images={images} />
         <LikeButton
           className="absolute top-4 right-4 z-10"
           onClick={onLike}
           isActive={isLike}
         />
-
-        <Carousel
-          showDots={true}
-          responsive={responsive}
-          dotListClass="[&>.react-multi-carousel-dot_button]:bg-white/30 [&>.react-multi-carousel-dot_button]:border-none [&>.react-multi-carousel-dot--active_button]:!bg-white"
-          arrows={false}
-          className="w-full h-full z-0">
-          {images.map((item, index) => (
-            <div key={index} className="w-full h-full">
-              <img
-                src={item}
-                alt="img"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </Carousel>
       </div>
       <div className="p-4 flex flex-col gap-[30px] h-full">
         <div className="flex flex-col gap-2 flex-1 h-full">

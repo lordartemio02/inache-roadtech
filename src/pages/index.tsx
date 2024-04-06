@@ -1,5 +1,6 @@
 import BasePage from "./BasePage";
-import NotFoundPage from "./NotFoundPage";
 import { MapPage } from "./MapPage";
+import NotFoundPage from "./NotFoundPage";
+import RoadPage from "./RoadPage";
 
-export { NotFoundPage, BasePage, MapPage };
+export { NotFoundPage, BasePage, MapPage, RoadPage };
