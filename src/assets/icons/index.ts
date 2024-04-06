@@ -23,7 +23,9 @@ import OnBusIcon from "./OnBusIcon.svg";
 import OnCarIcon from "./OnCarIcon.svg";
 import OnFootIcon from "./OnFootIcon.svg";
 import RoadIcon from "./RoadIcon";
+import RoadMainIcon from "./RoadMainIcon.svg?react";
 import SearchIcon from "./SearchIcon.svg?react";
+import SmartRoadIcon from "./SmartRoadIcon.svg?react";
 import SuitcaseIcon from "./SuitcaseIcon.svg?react";
 import telegramIcon from "./telegramIcon.svg";
 import TrainIcon from "./TrainIcon.svg?react";
@@ -62,4 +64,6 @@ export {
   OnCarIcon,
   OnBusIcon,
   OnBikeIcon,
+  SmartRoadIcon,
+  RoadMainIcon,
 };
