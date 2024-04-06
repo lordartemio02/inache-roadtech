@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdvantageIcon } from "../../assets/icons";
+import map from "../../assets/images/Map.png";
 import { tags } from "../../mock/tagsList";
 
 import Button from "../Button";
@@ -63,6 +64,9 @@ const CardRoad: FC<CardRoadProps> = (props) => {
               <p>{tag.name}</p>
             </div>
           ))}
+        </div>
+        <div onClick={() => nav("/map")} className="my-5">
+          <img className="w-[375px] h-[275px]" src={map} alt="map" />
         </div>
         <div className="flex flex-row gap-6 mt-4 mb-2">
           {types.map((_, i) => (
