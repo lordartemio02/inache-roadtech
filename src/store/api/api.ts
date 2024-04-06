@@ -71,7 +71,7 @@ export const baseQueryWithReAuth = async (
       },
       api,
       extraOptions,
-      import.meta.env.VITE_API_URL || ""
+      "http://79.174.93.234/api" || ""
     )) as QueryReturnValue<
       AccessTokenQuery,
       FetchBaseQueryError,
@@ -111,7 +111,7 @@ export const basicApi = createApi({
           args,
           api,
           extraOptions,
-          import.meta.env.VITE_API_URL || ""
+          "http://79.174.93.234/api" || ""
         )
     );
   },

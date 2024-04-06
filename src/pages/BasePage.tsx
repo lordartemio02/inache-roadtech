@@ -19,10 +19,12 @@ import Layout from "../components/Layout";
 import SearchMainBlock from "../components/SearchMainBlock";
 import { TypesRoadSearch } from "../interfaces/TypesRoadSearch";
 import data from "../mock/cardsList.json";
+import { useGetPopularRoutesQuery } from "../store/api/routesApi";
 
 const BasePage = () => {
   const [dateRange, setDateRange] = useState<(Date | null)[]>([null, null]);
   const [startDate, endDate] = dateRange;
+  const datas = useGetPopularRoutesQuery({});
   // const [searchValue, setSearchValue] = useState<string>("");
   const nav = useNavigate();
 
@@ -38,34 +40,14 @@ const BasePage = () => {
     nav("/road");
   };
 
+  console.log("====================================");
+  console.log(datas);
+  console.log("====================================");
+
   return (
     <Layout hideFooter>
-      <div className={`bg-main`}>
+      <div className={`bg-main mb-5`}>
         <div className="relative w-full">
-          {/* <div className="absolute z-[100] rounded-20 bg-natural-100 flex flex-row justify-around h-24 -top-14 w-full">
-            <MuseumIcon
-              onClick={() => onCLickType(TypesRoadSearch.MUSEUM)}
-              className={
-                typeSelected === TypesRoadSearch.MUSEUM
-                  ? "fill-yellow-100 border-b border-b-yellow-100"
-                  : ""
-              }
-            />
-            <CameraIcon className="h-6 w-6" />
-            <HotelIcon className="h-6 w-6" />
-            <CafeIcon className="h-6 w-6" />
-            <AirplaneIcon className="h-6 w-6" />
-            <TrainIcon className="h-6 w-6" />
-            <RoadIcon
-              onClick={() => onCLickType(TypesRoadSearch.ROAD)}
-              className={
-                typeSelected === TypesRoadSearch.ROAD
-                  ? "fill-yellow-100 border-b border-b-yellow-100"
-                  : ""
-              }
-            />
-          </div> */}
-
           <div className="flex flex-col bg-white rounded-b-20 pb-2">
             <div className="flex flex-row gap-8 justify-center">
               <div
