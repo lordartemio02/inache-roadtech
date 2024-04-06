@@ -17,6 +17,10 @@ import SuitcaseIcon from './SuitcaseIcon.svg?react';
 import telegramIcon from './telegramIcon.svg';
 import userIcon from './userIcon.svg';
 import vkIcon from './vkIcon.svg';
+import OnFootIcon from './OnFootIcon.svg';
+import OnCarIcon from './OnCarIcon.svg';
+import OnBusIcon from './OnBusIcon.svg';
+import OnBikeIcon from './OnBikeIcon.svg';
 
 // eslint-disable-next-line simple-import-sort/exports
 export {
@@ -39,4 +43,8 @@ export {
   telegramIcon,
   userIcon,
   vkIcon,
+  OnFootIcon,
+  OnCarIcon,
+  OnBusIcon,
+  OnBikeIcon,
 };
