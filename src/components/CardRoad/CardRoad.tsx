@@ -1,16 +1,19 @@
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AdvantageIcon } from "../../assets/icons";
 import { tags } from "../../mock/tagsList";
 
 import Button from "../Button";
 import CarouselKit from "../CarouselKit";
 import LikeButton from "../LikeButton";
+import ReviewsCard from "../ReviewsCard";
 import { CardRoadProps } from "./CardRoad.interface";
 
 const types = ["Пеший", "Велосипедный", "Автомобильный"];
 
 const CardRoad: FC<CardRoadProps> = (props) => {
   const [indexDay, setIndexDay] = useState(0);
+  const nav = useNavigate();
 
   const { title, images, rating, onClick, onLike, isLike } = props;
 
@@ -18,6 +21,13 @@ const CardRoad: FC<CardRoadProps> = (props) => {
     <div className="rounded-[20px] overflow-hidden flex flex-col h-full">
       <div className="h-60 w-full relative">
         {/* <Rating total={rating} className="absolute top-2 left-2 z-10" /> */}
+        <div
+          className="absolute top-2 left-2 z-[80]"
+          onClick={() => {
+            nav("/story-location");
+          }}>
+          <ReviewsCard reviewsImages={images} />
+        </div>
         <CarouselKit images={images} />
         <LikeButton
           className="absolute top-4 right-4 z-10"
@@ -38,12 +48,10 @@ const CardRoad: FC<CardRoadProps> = (props) => {
           <Button className="w-full" onClick={onClick}>
             Добавить
           </Button>
-          <div className="w-12 h-12">
-            <LikeButton
-              className="w-12 h-12 flex items-center justify-center"
-              isActive={false}
-            />
-          </div>
+          <LikeButton
+            className="w-12 h-12 flex items-center justify-center"
+            isActive={false}
+          />
         </div>
       </div>
       <div className="p-4">

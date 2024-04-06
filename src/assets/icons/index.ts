@@ -30,7 +30,6 @@ import TrainIcon from "./TrainIcon.svg?react";
 import userIcon from "./userIcon.svg";
 import vkIcon from "./vkIcon.svg";
 
-// eslint-disable-next-line simple-import-sort/exports
 export {
   BookIcon,
   CalendarIcon,
