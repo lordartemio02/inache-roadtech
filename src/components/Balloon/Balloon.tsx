@@ -12,12 +12,11 @@ export const Balloon = ({
   buttonTitle,
   onClick,
   onLike,
-  isLike,
 }: IBalloon) => {
   return (
-    <div className="p-2.5 rounded-[20px] overflow-hidden bg-natural-700 flex flex-col h-full">
+    <div className="p-2.5 rounded-[20px] overflow-hidden bg-natural-700 flex flex-col h-auto w-[320px]">
       <div className="h-60 w-full">
-        <div className="w-max-[288px] max-h-[203px] min-h-[166px]">
+        <div className="w-max-[320px] max-h-[203px] min-h-[166px]">
           <ButtonClose
             id={closeButtonId}
             onClick={() => {}}
@@ -26,7 +25,7 @@ export const Balloon = ({
           <img
             src={imageSrc}
             alt="img"
-            className="w-full h-full object-cover"
+            className="w-max-[320px] max-h-[203px] min-h-[166px] object-cover"
           />
         </div>
       </div>
@@ -36,20 +35,23 @@ export const Balloon = ({
           content={title}
         />
 
-        <p className="text-[14px] font-suisseIntl font-normal leading-[22px]">
+        <p className="text-body-p2 font-suisseIntl font-normal">
           {description}
         </p>
       </div>
 
-      <div className="flex flex-raw gap-2">
-        <Button subtitle={buttonTitle} onClick={onClick}>
+      <div className="flex flex-row gap-3 w-full">
+        <Button className="w-full" onClick={onClick}>
           {buttonTitle}
         </Button>
 
-        <LikeButton
-          onClick={onLike}
-          isActive={isLike}
-        />
+        <div className="w-12 h-12">
+          <LikeButton
+            className="w-12 h-12 flex items-center justify-center"
+            isActive={true}
+            onClick={onLike}
+          />
+        </div>
       </div>
     </div>
   );

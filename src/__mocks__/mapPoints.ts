@@ -117,3 +117,25 @@ export const points = {
     },
   ],
 };
+
+export const newPoints = 
+{
+  "id": "string",
+  "type": "string",
+  "name": "string",
+  "description": "string",
+  "latitude": 0,
+  "longitude": 0,
+  "attachments": [
+    "string"
+  ],
+  "preview_image": "string",
+  "address": "string",
+  "day_number": 0,
+  "order_number": 0,
+  "routeId": "string",
+  "route": "string",
+  "stories": [
+    "string"
+  ]
+}

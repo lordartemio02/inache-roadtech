@@ -197,6 +197,7 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
             }),
       balloonAutoPan: true,
       balloonPanelMaxMapArea: 0,
+      balloonAutoPanMargin: [-100, 0, 540, 0], //верхний, правый, нижний и левый
       balloonLayout: point.balloonComponent
         ? generateLayoutWithCloseButtons(
             ReactDOMServer.renderToStaticMarkup(point.balloonComponent),
@@ -213,7 +214,7 @@ const prepareMapOptions = (top: string) => {
     float: "none",
     position: {
       top,
-      right: "10px"
+      right: "10px",
     }
   };
 
@@ -240,31 +241,30 @@ const getMapOptions = (points: IPoint[], customButtons: any[]) => {
       controls: [geolocationControl, zoomControl, ...customButtons],
     },
     {
-      // Зададим опции для элементов управления.
-      // geolocationControlFloat: 'right',
-      // zoomControl: 'right',
-      // geolocationControlSize: 'small',
-      // zoomControlSize: 'small',
       buttonMaxWidth: 300,
     }
   ]
 }
 
 const init = ({ points, onPinClick }: IInitMapProps) => {
+  const geolocation = ymaps.geolocation;
+  const city = geolocation.city;
+  const country = geolocation.country;
+
   // Объявляем набор опорных точек и массив индексов транзитных точек.
   const referencePoints = [
     "Москва, Ленинский проспект",
     "Москва, Льва Толстого, 16",
     "Москва, Кремлевская набережная",
     "Москва, парк Сокольники"
-  ]
+  ];
   const viaIndexes = [2];
 
   // Создаем мультимаршрут и настраиваем его внешний вид с помощью опций.
   var multiRoute = new ymaps.multiRouter.MultiRoute({
-      referencePoints: referencePoints,
+      referencePoints: points?.map(({ coordinates }) => coordinates),
       params: {
-        viaIndexes,
+        // viaIndexes,
         //Тип маршрутизации - пешеходная маршрутизация.
         routingMode: 'pedestrian' // общест. тран - 'masstransit', авто auto
       }
@@ -273,45 +273,46 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
       wayPointStartIconColor: "#333",
       wayPointStartIconFillColor: "#B3B3B3",
       // Задаем собственную картинку для последней путевой точки.
-      wayPointFinishIconLayout: "default#image",
-      wayPointFinishIconImageHref: "images/sokolniki.png",
-      wayPointFinishIconImageSize: [30, 30],
-      wayPointFinishIconImageOffset: [-15, -15],
+      wayPointIconRadius: 50,
+      wayPointIconLayout: "default#image",
+      wayPointIconImageHref: "src/assets/images/image 215.png",
+      wayPointIconImageSize: [30, 30],
+      wayPointIconImageOffset: [-15, -15],
       // Позволяет скрыть иконки путевых точек маршрута.
       // wayPointVisible:false,
 
       // Внешний вид транзитных точек.
-      viaPointIconRadius: 7,
-      viaPointIconFillColor: "#000088",
-      viaPointActiveIconFillColor: "#E63E92",
+      // viaPointIconRadius: 7,
+      // viaPointIconFillColor: "#000088",
+      // viaPointActiveIconFillColor: "#E63E92",
       // Транзитные точки можно перетаскивать, при этом
       // маршрут будет перестраиваться.
-      viaPointDraggable: true,
+      // viaPointDraggable: true,
       // Позволяет скрыть иконки транзитных точек маршрута.
       // viaPointVisible:false,
 
       // Внешний вид точечных маркеров под путевыми точками.
-      pinIconFillColor: "#000088",
-      pinActiveIconFillColor: "#B3B3B3",
+      // pinIconFillColor: "#000088",
+      // pinActiveIconFillColor: "#B3B3B3",
       // Позволяет скрыть точечные маркеры путевых точек.
       // pinVisible:false,
 
       // Внешний вид линии маршрута.
       routeStrokeWidth: 2,
-      routeStrokeColor: "#000088",
-      routeActiveStrokeWidth: 1,
-      routeActiveStrokeColor: "#E63E92",
+      routeStrokeColor: "#007470",
+      routeActiveStrokeWidth: 2,
+      routeActiveStrokeColor: "#B21500",
 
       // Внешний вид линии пешеходного маршрута.
       routeActivePedestrianSegmentStrokeStyle: "solid",
-      routeActivePedestrianSegmentStrokeColor: "#00CDCD",
+      routeActivePedestrianSegmentStrokeColor: "#007470",
 
       // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
       boundsAutoApply: true
   });
 
   // Настраиваем внешний вид второй точки через прямой доступ к ней.
-  customizeSecondPoint();
+  // customizeSecondPoint();
 
   // Создаем кнопки.
   var removePointsButton = new ymaps.control.Button({
@@ -377,13 +378,12 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
   mapInstance.geoObjects.add(multiRoute);
 
   const objectManager = new ymaps.ObjectManager(mapOptions)
+  mapInstance.geoObjects.add(multiRoute);
   mapInstance.geoObjects.add(objectManager)
 
   const geoData = generateGeoData(points as IPoint[])
   objectManager.add(geoData)
 };
-
-// ymaps.ready(init);
 
 export const prepareMap = async ({
   points,
