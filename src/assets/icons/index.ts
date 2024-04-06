@@ -18,6 +18,10 @@ import MessageIcon from "./MessageIcon.svg?react";
 import mosturizmIcon from "./mosturizmIcon.svg";
 import MuseumIcon from "./MuseumIcon";
 import okIcon from "./okIcon.svg";
+import OnBikeIcon from "./OnBikeIcon.svg";
+import OnBusIcon from "./OnBusIcon.svg";
+import OnCarIcon from "./OnCarIcon.svg";
+import OnFootIcon from "./OnFootIcon.svg";
 import RoadIcon from "./RoadIcon";
 import SearchIcon from "./SearchIcon.svg?react";
 import SuitcaseIcon from "./SuitcaseIcon.svg?react";
@@ -55,4 +59,8 @@ export {
   MuseumIcon,
   AdvantageIcon,
   ChevronLeft,
+  OnFootIcon,
+  OnCarIcon,
+  OnBusIcon,
+  OnBikeIcon,
 };

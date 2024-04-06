@@ -207,19 +207,44 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
   })),
 });
 
+const prepareMapOptions = (top: string) => {
+  const options = {
+    size: "small",
+    float: "none",
+    position: {
+      top,
+      right: "10px"
+    }
+  };
+
+  return options;
+};
+
 const getMapOptions = (points: IPoint[], customButtons: any[]) => {
+  const geolocationControl = new ymaps.control.GeolocationControl({
+    options: {
+      ...prepareMapOptions("300px"),
+    },
+  });
+
+  const zoomControl = new ymaps.control.ZoomControl({
+    options: {
+      ...prepareMapOptions("223px"),
+    },
+  });
+
   return [
     {
       center: points[0]?.coordinates || [55.739625, 37.54120],
       zoom: defaultZoomValue,
-      controls: ['geolocationControl', 'zoomControl', ...customButtons],
+      controls: [geolocationControl, zoomControl, ...customButtons],
     },
     {
       // Зададим опции для элементов управления.
-      geolocationControlFloat: 'right',
-      zoomControlFloat: 'right',
-      geolocationControlSize: 'small',
-      zoomControlSize: 'small',
+      // geolocationControlFloat: 'right',
+      // zoomControl: 'right',
+      // geolocationControlSize: 'small',
+      // zoomControlSize: 'small',
       buttonMaxWidth: 300,
     }
   ]
@@ -350,12 +375,18 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
 
   // Добавляем мультимаршрут на карту.
   mapInstance.geoObjects.add(multiRoute);
+
+  const objectManager = new ymaps.ObjectManager(mapOptions)
+  mapInstance.geoObjects.add(objectManager)
+
+  const geoData = generateGeoData(points as IPoint[])
+  objectManager.add(geoData)
 };
 
 // ymaps.ready(init);
 
 export const prepareMap = async ({
-  points = [],
+  points,
   onPinClick,
   emitMapLoadState,
   // onBoundsChange,
