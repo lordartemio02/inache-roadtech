@@ -7,12 +7,34 @@ import {
 } from "../store/thunk/mapThunk";
 import Event from '../services/eventEmitter';
 import { IPoint, TLoadingState } from "./yandexMap";
-// import { Balloon } from "../components/Balloon";
-// import { BalloonButtonTitles } from "../components/Balloon/Balloon.interface";
+import { BalloonInfo } from "../components/BalloonInfo";
+import { BalloonButtonTitles, BalloonDescription, BalloonImagesSrc, BalloonTitles } from "../components/Balloon/Balloon.interface";
 
 const balloonCloseButtonDataId = "balloonCloseButtonDataId";
 
+export interface IMapPoint {
+  id: string;
+  type: string;
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  attachments: string[];
+  preview_image: string;
+  address: string;
+  day_number: number;
+  order_number: number;
+  routeId: string;
+  route: string;
+  stories: string[];
+};
+
+export interface IMapPoints {
+  points: IMapPoint[];
+};
+
 const enum MarkerTypes {
+  start = "start",
   route = "route",
   promo ="promo",
   partners ="partners",
@@ -32,7 +54,7 @@ const prepareIconComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoin
   switch (point.type) {
     case MarkerTypes.route:
       return (
-        <span>Point of promo</span>
+        <span>Point of route</span>
         // <Balloon
         //   closeButtonId={balloonCloseButtonDataId}
         //   title={BalloonButtonTitles.add}
@@ -63,10 +85,10 @@ const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersP
   switch (point.type) {
     case MarkerTypes.route:
       return (
-        <span>Point of promo</span>
+        <span>Point of 1</span>
         // <Balloon
         //   closeButtonId={balloonCloseButtonDataId}
-        //   title={BaloonButtonTitles.}
+        //   title={BalloonButtonTitles.}
         //   imageSrc={}
         //   description={}
         //   buttonTitle={}
@@ -77,7 +99,14 @@ const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersP
       );
     case MarkerTypes.promo:
       return (
-        <span>Point of promo</span>
+        <BalloonInfo
+          closeButtonId={balloonCloseButtonDataId}
+          title={BalloonTitles.promo}
+          imageSrc={BalloonImagesSrc.promo}
+          description={BalloonDescription.promo}
+          buttonTitle={BalloonButtonTitles.add}
+          onClick={() => console.log("CLICK Take promo")}
+        />
       );
     case MarkerTypes.partners:
       return (
@@ -92,14 +121,12 @@ const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersP
 
 
 export const generatePointsWithContent = (points: IMapPoints) => {
-  return points.routePoints.map((point) => {
+  return points.promoPoints.map((point) => {
     return {
       iconComponent: prepareIconComponent(point),
       coordinates: point.coordinates,
-      balloonComponent: (
-        <span>Point of promo</span>
-      ),
-      balloonCloseButtonDataId: balloonCloseButtonDataId
+      balloonComponent: prepareBalloonComponent(point),
+      balloonCloseButtonDataId: balloonCloseButtonDataId,
     } as IPoint
   });
 };

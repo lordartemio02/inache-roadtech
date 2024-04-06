@@ -4,12 +4,13 @@ export interface IBalloon {
   imageSrc: string;
   description: string;
   buttonTitle: string;
-  isLike: boolean;
+  isLike?: boolean;
   onClick: () => void;
   onLike: () => void;
 }
 
 export const enum BalloonNames {
+  route = "route",
   promo = "promo",
   winning = "winning",
   selfie = "selfie",
@@ -19,18 +20,21 @@ export const enum BalloonNames {
 export const enum BalloonButtonTitles {
   add = "Добавить",
   pickedUp = "Забрать",
-  clearly = "Понятно",
+  forward = "Вперед",
   watch = "Посмотреть",
 };
 
 export const enum BalloonImagesSrc {
-  promo = "../assets/images/Diamond.png",
-  winning = "../assets/images/Prize.png",
-  selfie = "../assets/images/Camera.png",
-  start = "../assets/images/Flag.png",
+  route = "src/assets/images/image 215.png",
+  promo = "src/assets/images/Diamond.png",
+  promoLarge = "src/assets/images/DiamondLarge.png",
+  winning = "src/assets/images/Prize.png",
+  selfie = "src/assets/images/Camera.png",
+  start = "src/assets/images/Flag.png",
 };
 
 export const enum BalloonTitles {
+  route = "route",
   promo = "Вы нашли часть промокода!",
   winning = "Победа!",
   selfie = "Классное место для селфи!",
@@ -38,6 +42,7 @@ export const enum BalloonTitles {
 };
 
 export const enum BalloonDescription {
+  route = "route Description",
   promo = "частей! Собирайте еще алмазы на следующих локациях",
   winning = "Вы собрали весь промокод!",
   selfie = "Делайте снимки ваших путешествий и делитесь в историях вашими впечатлениями!",
