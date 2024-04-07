@@ -14,7 +14,6 @@ import {
   IRoutePoints,
 } from "../store/thunk/mapThunk";
 import { IPoint, TLoadingState } from "./yandexMap";
-import Marker from "../components/Marker";
 
 const balloonCloseButtonDataId = "balloonCloseButtonDataId";
 
@@ -57,44 +56,44 @@ export const emitMapLoadState = (state: TLoadingState) => {
   Event.emit("add", { loadingState: state });
 };
 
-const prepareIconComponent = (
-  point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
-) => {
-  switch (point.type) {
-    case MarkerTypes.route:
-      return (
-        <Marker
-          id={point.id}
-          type={point.type}
-          imageSrc={point.preview_image}
-        />
-      );
-    case MarkerTypes.promo:
-      return (
-        <Marker
-          id={point.id}
-          type={point.type}
-          imageSrc={point.preview_image}
-        />
-      );
-    case MarkerTypes.partners:
-      return (
-        <Marker
-          id={point.id}
-          type={point.type}
-          imageSrc={point.preview_image}
-        />
-      );
-    default:
-      return (
-        <Marker
-          id={point.id}
-          type={point.type}
-          imageSrc={point.preview_image}
-        />
-      );
-  }
-};
+// const prepareIconComponent = (
+//   point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
+// ) => {
+//   switch (point.type) {
+//     case MarkerTypes.route:
+//       return (
+//         <Marker
+//           id={point.id}
+//           type={point.type}
+//           imageSrc={point.preview_image}
+//         />
+//       );
+//     case MarkerTypes.promo:
+//       return (
+//         <Marker
+//           id={point.id}
+//           type={point.type}
+//           imageSrc={point.preview_image}
+//         />
+//       );
+//     case MarkerTypes.partners:
+//       return (
+//         <Marker
+//           id={point.id}
+//           type={point.type}
+//           imageSrc={point.preview_image}
+//         />
+//       );
+//     default:
+//       return (
+//         <Marker
+//           id={point.id}
+//           type={point.type}
+//           imageSrc={point.preview_image}
+//         />
+//       );
+//   }
+// };
 
 const prepareBalloonComponent = (
   point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
@@ -147,13 +146,15 @@ const prepareBalloonComponent = (
   }
 };
 
-const preparePointsWithContent = (point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints) => {
+const preparePointsWithContent = (
+  point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
+) => {
   return {
     // iconComponent: prepareIconComponent(point),
     coordinates: point.coordinates,
     balloonComponent: prepareBalloonComponent(point),
     balloonCloseButtonDataId: balloonCloseButtonDataId,
-  } as IPoint
+  } as IPoint;
 };
 
 export const generatePointsWithContent = (points: IYandexMapPoints) => {
@@ -163,7 +164,8 @@ export const generatePointsWithContent = (points: IYandexMapPoints) => {
   const promoPoints: IPoint[] = [];
   const selfiePoints: IPoint[] = [];
 
-  points.routePoints.map((point) => { //routePoints !!!!!!!!!!!!!!
+  points.routePoints.map((point) => {
+    //routePoints !!!!!!!!!!!!!!
     switch (point.type) {
       case MarkerTypes.route:
         routePoints.push(preparePointsWithContent(point));
@@ -189,7 +191,7 @@ export const generatePointsWithContent = (points: IYandexMapPoints) => {
     partnersPoints,
     // excursionPoints,
   };
-  
+
   return allPoint;
   // return points.promoPoints.map((point) => {
   //   return {
@@ -199,5 +201,4 @@ export const generatePointsWithContent = (points: IYandexMapPoints) => {
   //     balloonCloseButtonDataId: balloonCloseButtonDataId,
   //   } as IPoint
   // });
-
 };
