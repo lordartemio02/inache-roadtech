@@ -1,8 +1,13 @@
-
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import ReactDOMServer from 'react-dom/server';
 import { IClassConstructor, IShape, layout } from "yandex-maps";
 import { loadScript } from "./loadScript";
 import { ReactElement } from "react";
+import { MarkerTypes } from './mapUtils';
+import { IMapPoints } from '../store/thunk/mapThunk';
+import { BalloonImagesSrc } from '../components/Balloon/Balloon.interface';
 
 const YANDEX_API_KEY = "2abb6e36-ee29-4a88-9a1e-8c46287f042e";
 
@@ -15,7 +20,7 @@ export const enum LoadingStates {
   loading = "loading",
   ready = "ready",
   error = "error",
-};
+}
 
 export type TLoadingState = "unset" | "loading" | "ready" | "error";
 
@@ -24,9 +29,9 @@ export let loadingPromise: Promise<void>
 
 type TMapInstance = any
 
-declare const ymaps: any
+export declare const ymaps: any
 
-let mapInstance: TMapInstance
+export let mapInstance: TMapInstance
 
 
 export const destroyMap = () => {
@@ -34,6 +39,7 @@ export const destroyMap = () => {
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   mapInstance.destroy();
   mapInstance = undefined;
 }
@@ -43,6 +49,7 @@ export const setCenter = (coord: number[]) => {
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   mapInstance?.setCenter(coord, defaultZoomValue, {
     checkZoomRange: true,
   })
@@ -65,6 +72,7 @@ const loadMap = ({ updateLoadingState, version = "2.1"}: ILoadMap) => {
         loadScript(
           src,
           () => {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             ymaps.ready(() => {
               loadingState = LoadingStates.ready;
               resolve();
@@ -98,17 +106,20 @@ const generateLayout = ({
   onDestroy,
   onGetShape,
 }: IGenerateLayoutProps): IClassConstructor<layout.templateBased.Base> =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   ymaps.templateLayoutFactory.createClass(markup, {
     build() {
       this.constructor.superclass.build.call(this)
 
       if (onBuild) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         onBuild(this)
       }
     },
 
     destroy() {
       if (onDestroy) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         onDestroy(this)
       }
 
@@ -117,6 +128,7 @@ const generateLayout = ({
 
     getShape() {
       if (onGetShape !== undefined) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         return onGetShape(this)
       }
 
@@ -135,6 +147,7 @@ const generateLayout = ({
               [rect.width / 2, 0], // нижний правый угол относительно точки
             ]
 
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle(coords))
     },
   })
@@ -173,7 +186,7 @@ export interface IPoint {
 }
 
 interface IInitMapProps {
-  points?: IPoint[]
+  points?: { routePoints: IPoint[]; promoPoints: IPoint[]; partnersPoints: IPoint[]; }
   onPinClick?: (id: number) => void
   emitMapLoadState?: (state: TLoadingState) => void
   // onBoundsChange?: (e: MapEvent) => void
@@ -197,8 +210,37 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
             }),
       balloonAutoPan: true,
       balloonPanelMaxMapArea: 0,
-      balloonAutoPanMargin: [-100, 0, 540, 0], //верхний, правый, нижний и левый
+      balloonAutoPanMargin: [-50, 200, 640, -350], //верхний, правый, нижний и левый
       balloonLayout: point.balloonComponent
+        ? generateLayoutWithCloseButtons(
+            ReactDOMServer.renderToStaticMarkup(point.balloonComponent),
+            point.balloonCloseButtonDataId,
+          )
+        : null,
+    },
+  })),
+});
+
+export const generateRouteGeoData = (points: IPoint[]): Record<string, unknown> => ({
+  type: 'FeatureCollection',
+  features: points.map((point, index) => ({
+    type: 'Feature',
+    id: index,
+    geometry: { type: 'Point', coordinates: point.coordinates },
+    options: {
+      pane: 'balloon',
+      hideIconOnBalloonOpen: false,
+
+      iconContentLayout:
+        point.iconComponent === undefined
+          ? undefined
+          : generateLayout({
+              markup: ReactDOMServer.renderToStaticMarkup(point.iconComponent),
+            }),
+      balloonAutoPan: true,
+      balloonPanelMaxMapArea: 0,
+      balloonAutoPanMargin: [-50, 200, 640, -350], //верхний, правый, нижний и левый
+      balloonContentLayout: point.balloonComponent
         ? generateLayoutWithCloseButtons(
             ReactDOMServer.renderToStaticMarkup(point.balloonComponent),
             point.balloonCloseButtonDataId,
@@ -222,6 +264,7 @@ const prepareMapOptions = (top: string) => {
 };
 
 const getMapOptions = (points: IPoint[], customButtons: any[]) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const geolocationControl = new ymaps.control.GeolocationControl({
     options: {
       ...prepareMapOptions("300px"),
@@ -247,142 +290,221 @@ const getMapOptions = (points: IPoint[], customButtons: any[]) => {
 }
 
 const init = ({ points, onPinClick }: IInitMapProps) => {
-  const geolocation = ymaps.geolocation;
-  const city = geolocation.city;
-  const country = geolocation.country;
+  let referencePoints = points?.routePoints.map(({ coordinates }) => coordinates);
+  const location = ymaps.geolocation;
+  // const city = location.city;
+  // const country = location.country;
 
-  // Объявляем набор опорных точек и массив индексов транзитных точек.
-  const referencePoints = [
-    "Москва, Ленинский проспект",
-    "Москва, Льва Толстого, 16",
-    "Москва, Кремлевская набережная",
-    "Москва, парк Сокольники"
-  ];
-  const viaIndexes = [2];
-
+  
   // Создаем мультимаршрут и настраиваем его внешний вид с помощью опций.
-  var multiRoute = new ymaps.multiRouter.MultiRoute({
-      referencePoints: points?.map(({ coordinates }) => coordinates),
-      params: {
-        // viaIndexes,
-        //Тип маршрутизации - пешеходная маршрутизация.
-        routingMode: 'pedestrian' // общест. тран - 'masstransit', авто auto
-      }
-  }, {
-      // Внешний вид путевых точек.
-      wayPointStartIconColor: "#333",
-      wayPointStartIconFillColor: "#B3B3B3",
-      // Задаем собственную картинку для последней путевой точки.
-      wayPointIconRadius: 50,
-      wayPointIconLayout: "default#image",
-      wayPointIconImageHref: "src/assets/images/image 215.png",
-      wayPointIconImageSize: [30, 30],
-      wayPointIconImageOffset: [-15, -15],
-      // Позволяет скрыть иконки путевых точек маршрута.
-      // wayPointVisible:false,
-
-      // Внешний вид транзитных точек.
-      // viaPointIconRadius: 7,
-      // viaPointIconFillColor: "#000088",
-      // viaPointActiveIconFillColor: "#E63E92",
-      // Транзитные точки можно перетаскивать, при этом
-      // маршрут будет перестраиваться.
-      // viaPointDraggable: true,
-      // Позволяет скрыть иконки транзитных точек маршрута.
-      // viaPointVisible:false,
-
-      // Внешний вид точечных маркеров под путевыми точками.
-      // pinIconFillColor: "#000088",
-      // pinActiveIconFillColor: "#B3B3B3",
-      // Позволяет скрыть точечные маркеры путевых точек.
-      // pinVisible:false,
-
-      // Внешний вид линии маршрута.
-      routeStrokeWidth: 2,
-      routeStrokeColor: "#007470",
-      routeActiveStrokeWidth: 2,
-      routeActiveStrokeColor: "#B21500",
-
-      // Внешний вид линии пешеходного маршрута.
-      routeActivePedestrianSegmentStrokeStyle: "solid",
-      routeActivePedestrianSegmentStrokeColor: "#007470",
-
-      // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
-      boundsAutoApply: true
+  let multiRoute = new ymaps.multiRouter.MultiRoute({
+    referencePoints: referencePoints,
   });
 
   // Настраиваем внешний вид второй точки через прямой доступ к ней.
-  // customizeSecondPoint();
+  const customizePoint = () => {
+    /**
+     * Ждем, пока будут загружены данные мультимаршрута и созданы отображения путевых точек.
+     */
+    multiRoute.model.events.add("requestsuccess", () => {
+      const geoData = generateRouteGeoData(points?.routePoints as IPoint[]);
+      const wayPoint = multiRoute.getWayPoints();
+      // let way
+      // let coordinates
+      
+      for (let i = 0; i < wayPoint.getLength(); i++) {
+        const way = wayPoint.get(i);
+        // const coordinates = wayPoint.get(i).properties.get('coordinates');
+        // console.log(coordinates, coord,
+        //   coordinates.every((element, index) => { return element === points?.routePoints[i].coordinates[index] }));
+        ymaps.geoObject.addon.balloon.get(way);
+        const customLayout = ymaps.templateLayoutFactory.createClass('<img src="src/assets/images/image_215.png" width="30" height="30">');
+        wayPoint.options.set(
+          // geoData
+          {
+            iconContentLayout: customLayout,
+            // generateLayout({
+            //   markup: ReactDOMServer.renderToStaticMarkup(points?.routePoints[i].iconComponent),
+            // }),
+            // balloonAutoPan: true,
+            // balloonPanelMaxMapArea: 0,
+            // balloonAutoPanMargin: [-50, 200, 640, -350], //верхний, правый, нижний и левый
+            balloonContentLayout: customLayout,
+          },
+        );
+      }
+    })
+  };
 
-  // Создаем кнопки.
-  var removePointsButton = new ymaps.control.Button({
-          data: {content: "Удалить промежуточные точки"},
-          options: {selectOnClick: true}
-      }),
-      routingModeButton = new ymaps.control.Button({
-          data: {content: "Пешком"},
-          options: {selectOnClick: true}
+  const referencePointsWithGeolocation = () => {
+    multiRoute.model.events.once("requestsuccess", () => {
+      location.get({
+        provider: 'browser',
+        mapStateAutoApply: true
+      }).then((result: any) => {
+        // Синим цветом пометим положение, полученное через браузер.
+        // Если браузер не поддерживает эту функциональность, метка не будет добавлена на карту.
+        referencePoints = [result.geoObjects.get(0).geometry.getCoordinates(), ...referencePoints as number[][]];
+        multiRoute = new ymaps.multiRouter.MultiRoute({
+          referencePoints: referencePoints,
+          params: {
+            //Тип маршрутизации - пешеходная маршрутизация.
+            routingMode: 'pedestrian' // общест. тран - 'masstransit', авто auto
+          }
+        }, {
+          // Внешний вид путевых точек.
+          // Задаем собственную картинку для последней путевой точки.
+          // wayPointIconRadius: 50,
+          wayPointIconLayout: "default#image",
+          wayPointIconImageHref: "src/assets/images/route.png",
+          wayPointIconImageSize: [30, 30],
+          wayPointIconImageOffset: [-15, -15],
+          // wayPointStartIconColor: "#333",
+          // wayPointStartIconFillColor: "#B3B3B3",
+          // wayPointStartPointIconLayout: "default#image",
+          // wayPointStartPointIconImageHref: "src/assets/images/Pin.png",
+          // wayPointStartIconImageSize: [30, 30],
+          // wayPointStartIconImageOffset: [-15, -15],
+          // Позволяет скрыть иконки путевых точек маршрута.
+          // wayPointVisible:false,
+          // Внешний вид транзитных точек.
+          // viaPointIconRadius: 7,
+          // viaPointIconFillColor: "#000088",
+          // viaPointActiveIconFillColor: "#E63E92",
+          // Транзитные точки можно перетаскивать, при этом
+          // маршрут будет перестраиваться.
+          // viaPointDraggable: true,
+          // Позволяет скрыть иконки транзитных точек маршрута.
+          // viaPointVisible:false,
+          // Внешний вид точечных маркеров под путевыми точками.
+          // pinIconFillColor: "#000088",
+          // pinActiveIconFillColor: "#B3B3B3",
+          // Позволяет скрыть точечные маркеры путевых точек.
+          // pinVisible:false,
+          // Внешний вид линии маршрута.
+          routeStrokeWidth: 2,
+          routeStrokeColor: "#007470",
+          routeActiveStrokeWidth: 2,
+          routeActiveStrokeColor: "#B21500",
+          // Внешний вид линии пешеходного маршрута.
+          routeActivePedestrianSegmentStrokeStyle: "solid",
+          routeActivePedestrianSegmentStrokeColor: "#007470",
+          // Автоматически устанавливать границы карты так, чтобы маршрут был виден целиком.
+          boundsAutoApply: true
+        });
+        // customizePoint();
+        mapInstance.geoObjects.add(multiRoute);
       });
+    });
+  };
 
-  // Объявляем обработчики для кнопок.
-  removePointsButton.events.add('select', function () {
-      multiRoute.model.setReferencePoints([
-          referencePoints[0],
-          referencePoints[referencePoints.length - 1]
-      ], []);
-  });
+  // const mapOptionControlsButtons = [routingModeButton];
 
-  removePointsButton.events.add('deselect', function () {
-      multiRoute.model.setReferencePoints(referencePoints, viaIndexes);
-      // Т.к. вторая точка была удалена, нужно заново ее настроить.
-      customizeSecondPoint();
-  });
-
-  routingModeButton.events.add('select', function () {
-      multiRoute.model.setParams({routingMode: 'pedestrian'}, true);
-  });
-
-  routingModeButton.events.add('deselect', function () {
-      multiRoute.model.setParams({routingMode: 'auto'}, true);
-  });
-
-  // Функция настройки внешнего вида второй точки.
-  function customizeSecondPoint() {
-      /**
-       * Ждем, пока будут загружены данные мультимаршрута и созданы отображения путевых точек.
-       */
-      multiRoute.model.events.once("requestsuccess", function () {
-          var yandexWayPoint = multiRoute.getWayPoints().get(1);
-          // Создаем балун у метки второй точки.
-          ymaps.geoObject.addon.balloon.get(yandexWayPoint);
-          yandexWayPoint.options.set({
-              preset: "islands#grayStretchyIcon",
-              iconContentLayout: ymaps.templateLayoutFactory.createClass(
-                  '<span style="color: red;">Я</span>ндекс'
-              ),
-              balloonContentLayout: ymaps.templateLayoutFactory.createClass(
-                  '{{ properties.address|raw }}'
-              )
-          });
-      });
-  }
-
-  const mapOptionControlsButtons = [removePointsButton, routingModeButton];
-
-  const mapOptions = getMapOptions(points as IPoint[], mapOptionControlsButtons)
+  const mapOptions = getMapOptions(points?.partnersPoints as IPoint[], []);
 
   // Создаем карту с добавленной на нее кнопкой.
   mapInstance = new ymaps.Map(mapContainerId, mapOptions[0], mapOptions[1]);
 
   // Добавляем мультимаршрут на карту.
-  mapInstance.geoObjects.add(multiRoute);
+  // mapInstance.geoObjects.add(multiRoute);
+  const objectManager = new ymaps.ObjectManager(mapOptions);
+  // mapInstance.geoObjects.add(multiRoute);
+  referencePointsWithGeolocation();
+  // customizePoint();
+  mapInstance.geoObjects.add(objectManager);
 
-  const objectManager = new ymaps.ObjectManager(mapOptions)
-  mapInstance.geoObjects.add(multiRoute);
-  mapInstance.geoObjects.add(objectManager)
 
-  const geoData = generateGeoData(points as IPoint[])
-  objectManager.add(geoData)
+  const geoData = generateGeoData(points?.partnersPoints as IPoint[]);
+  objectManager.add(geoData);
+
+  const generatePointsWithContent = (points: IMapPoints) => {
+    points.routePoints.map((point) => {
+      let myPlacemark
+
+      switch (point.type) {
+        case MarkerTypes.promo:
+          myPlacemark = new ymaps.Placemark(point.coordinates, { }, 
+            {
+              iconLayout: 'default#image',
+              iconImageHref: BalloonImagesSrc.promo, 
+              iconImageSize: [30, 30], 
+              iconImageOffset: [-6, -19], 
+            });
+            mapInstance.geoObjects.add(myPlacemark);
+          break;
+        case MarkerTypes.selfie:
+          // eslint-disable-next-line no-case-declarations
+          myPlacemark = new ymaps.Placemark(point.coordinates, { }, 
+            {
+              iconLayout: 'default#image',
+              iconImageHref: BalloonImagesSrc.selfie, 
+              iconImageSize: [30, 30], 
+              iconImageOffset: [-6, -19], 
+            });
+            mapInstance.geoObjects.add(myPlacemark);
+          break;
+        case MarkerTypes.partners:
+          // eslint-disable-next-line no-case-declarations
+          myPlacemark = new ymaps.Placemark(point.coordinates, { }, 
+            {
+              iconLayout: 'default#image',
+              iconImageHref: BalloonImagesSrc.pin, 
+              iconImageSize: [30, 30], 
+              iconImageOffset: [-6, -19], 
+            });
+            mapInstance.geoObjects.add(myPlacemark);
+          break;
+        default:
+          break;
+      }
+    });
+  }
+  generatePointsWithContent(points as IMapPoints);
+  // const myPlacemark = new ymaps.Placemark([55.61815671990187, 37.02327668669118], { }, 
+  //   {
+  //     iconLayout: 'default#image',
+  //     iconImageHref: 'src/assets/images/Camera.png', 
+  //     iconImageSize: [30, 30], 
+  //     iconImageOffset: [-6, -19], 
+  //   });
+  // const myPlacemark2 = new ymaps.Placemark([55.61815671990187, 37.02327668669118], { }, 
+  //   {
+  //     iconLayout: 'default#image',
+  //     iconImageHref: 'src/assets/images/Diamond.png', 
+  //     iconImageSize: [30, 30], 
+  //     iconImageOffset: [-6, -19], 
+  //   });
+    
+    // mapInstance.geoObjects.add(myPlacemark);
+    // mapInstance.geoObjects.add(myPlacemark2);
+  // customizePoint();
+
+  // mapInstance.container.events.add('click', (event: any) => {
+  //   if (onPinClick) {
+  //     const clickedElement = event.originalEvent?.domEvent?.originalEvent?.target?.parentNode
+  //       ?.parentNode as HTMLDivElement
+  //     const isBalloon = clickedElement?.dataset?.id === pointMarkerDataIdName;
+  //     const balloonCId = Number(clickedElement?.dataset?.clinicId);
+
+  //     if (isBalloon && balloonClinicId !== null && !Number.isNaN(balloonClinicId)) {
+  //       if (
+  //         earlierClickedId !== null &&
+  //         earlierClickedId !== balloonId
+  //       ) {
+  //         const earlierClickedElement = document.querySelector(
+  //           `[data-clinic-id='${earlierClickedId}']`,
+  //         ) as Element
+  //         ;(
+  //           earlierClickedElement?.firstElementChild?.firstElementChild as HTMLInputElement
+  //         ).checked = false;
+  //       }
+
+  //       onPinClick(balloonId);
+
+  //       earlierClickedId = balloonId;
+  //     }
+  //   }
+  // })
 };
 
 export const prepareMap = async ({

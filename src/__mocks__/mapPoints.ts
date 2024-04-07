@@ -2,13 +2,51 @@ export const points = {
   routePoints: [
     {
       "coordinates": [
+        56.3038,
+        43.9387,
+      ],
+      "id": 3040,
+      "title": "Ресторан Folk2",
+      "description": "jkzdnfvn",
+      "content": "Кажется, время завтрака?2",
+      "type": "route",
+      preview_image: "src/assets/images/Diamond.png",
+    },
+    {
+      "coordinates": [
+        56.3007,
+        43.9404,
+      ],
+      "id": 41454,
+      "title": "Ресторан Folk",
+      "description": "jkzdnfvn",
+      "content": "Кажется, время завтрака?",
+      "type": "route",
+      preview_image: "src/assets/images/Diamond.png",
+    },
+    {
+      "coordinates": [
+        56.2929,
+        43.9352,
+      ],
+      "id": 193624,
+      "title": "Ресторан Folk2<dsdf",
+      "description": "jkzdnfvn",
+      "content": "Спектакль-променад по Старо-Татарской слободе",
+      "type": "excursion",
+      preview_image: "src/assets/images/Diamond.png",
+    },
+    {
+      "coordinates": [
         56.31155000000001,
         44.00583
       ],
       "id": 2412,
       "title": "Ресторан Folk2<dsdf",
+      "description": "jkzdnfvn",
       "content": "Кажется, время завтрака?2<df<dfb",
-      "type": "route"
+      "type": "promo",
+      preview_image: "src/assets/images/Diamond.png",
     },
     {
       "coordinates": [
@@ -17,8 +55,10 @@ export const points = {
       ],
       "id": 2415,
       "title": "Ресторан Folk2<d<dfbdfbsdf",
+      "description": "jkzdnfvn",
       "content": "Кажется, время завтрака?2<df<dfbdfbdfb",
-      "type": "route"
+      "type": "partners",
+      preview_image: "src/assets/images/Diamond.png",
     },
     {
       "coordinates": [
@@ -28,7 +68,8 @@ export const points = {
       "id": 2499,
       "title": "Ресторан Folk2<dzdfbzdfb<dfbzdfbsdf",
       "content": "Кажется, время завтрака?2<dfzdfbzdfbzdfbdgb<dfb",
-      "type": "route"
+      "type": "route",
+      preview_image: "src/assets/images/Diamond.png",
     },
     {
       "coordinates": [
@@ -37,8 +78,10 @@ export const points = {
       ],
       "id": 2505,
       "title": "Ресторан Folk288888<dzdfbzdfb<dfbzdfbsdf",
+      "description": "jkzdnfvn",
       "content": "Кажется, время завтрака?2888888<dfzdfbzdfbzdfbdgb<dfb",
-      "type": "route"
+      "type": "route",
+      preview_image: "src/assets/images/Diamond.png",
     },
   ],
   promoPoints: [
@@ -50,7 +93,8 @@ export const points = {
       "id": 2820,
       "promo": 125,
       "step": 1,
-      "type": "promo"
+      "type": "promo",
+      preview_image: "src/assets/images/Diamond.png",
     },
     {
       "coordinates": [
@@ -60,7 +104,8 @@ export const points = {
       "id": 2965,
       "promo": 770,
       "step": 2,
-      "type": "promo"
+      "type": "promo",
+      preview_image: "src/assets/images/Flag.png",
     },
     {
       "coordinates": [
@@ -70,7 +115,8 @@ export const points = {
       "id": 44944,
       "promo": 200,
       "step": 3,
-      "type": "promo"
+      "type": "promo",
+      preview_image: "src/assets/images/Compass.png",
     },
     {
       "coordinates": [
@@ -80,7 +126,8 @@ export const points = {
       "id": 167950,
       "promo": 160,
       "step": 4,
-      "type": "promo"
+      "type": "promo",
+      preview_image: "src/assets/images/Camera.png",
     },
   ],
   partnersPoints: [

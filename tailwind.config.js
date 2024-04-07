@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors"
+// const colors = require("tailwindcss/colors");
 
 const baseSize = 16;
 
 function rem(v) {
-  return "" + v / baseSize + "rem";
+  return "" + `${v / baseSize}` + "rem";
 }
 
 export default {
@@ -134,6 +135,7 @@ export default {
       xl: "0px 8px 10px -6px rgba(0, 0, 0, 0.1), 0px 25px 25px -5px rgba(16, 24, 40, 0.1)",
       light: "0px 4px 18px rgba(0, 0, 0, 0.07)",
       "2xl": "0px 25px 50px -12px rgba(16, 24, 40, 0.25)",
+      dialog: "box-shadow: 4px 0px 16px 0px rgba(0, 0, 0, 0.25)"
     },
     container: {
       center: true,

@@ -11,6 +11,7 @@ import Header from "../components/Header";
 import { Loader } from "../components/Loader";
 
 import Event from '../services/eventEmitter';
+import Character from "../components/Character";
 
 
 interface IEventEmitter {
@@ -31,7 +32,7 @@ export const MapPage = () => {
     if (pinData) {
       console.log(pinData, progress);
     }
-  }, [setProgress]);
+  }, [progress]);
 
   useEffect(() => {
     dispatch(loadMap());
@@ -39,7 +40,7 @@ export const MapPage = () => {
     return () => {
       dispatch(unloadMap());
     };
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     Event?.on("add", handleEventEmitter);
@@ -57,7 +58,7 @@ export const MapPage = () => {
 
       <div className="w-full">
         {progress !== LoadingStates.ready && <Loader />}
-
+        <Character />
         <div id={mapContainerId} />
       </div>
     </div>

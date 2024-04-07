@@ -1,6 +1,6 @@
 import {
   IExcursionPoints,
-  IMapPoints,
+  IMapPoints as IYandexMapPoints,
   IPartnersPoints,
   IPromoPoints,
   IRoutePoints
@@ -9,6 +9,7 @@ import Event from '../services/eventEmitter';
 import { IPoint, TLoadingState } from "./yandexMap";
 import { BalloonInfo } from "../components/BalloonInfo";
 import { BalloonButtonTitles, BalloonDescription, BalloonImagesSrc, BalloonTitles } from "../components/Balloon/Balloon.interface";
+import Marker from "../components/Marker";
 
 const balloonCloseButtonDataId = "balloonCloseButtonDataId";
 
@@ -27,22 +28,23 @@ export interface IMapPoint {
   routeId: string;
   route: string;
   stories: string[];
-};
+}
 
 export interface IMapPoints {
   points: IMapPoint[];
-};
+}
 
-const enum MarkerTypes {
+export const enum MarkerTypes {
   start = "start",
   route = "route",
   promo ="promo",
   partners ="partners",
   excursion = "excursion",
   selfie = "selfie",
-};
+}
 
 export const onPinClick = (pinData: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   Event.emit("add", { pinData });
 };
 
@@ -54,29 +56,35 @@ const prepareIconComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoin
   switch (point.type) {
     case MarkerTypes.route:
       return (
-        <span>Point of route</span>
-        // <Balloon
-        //   closeButtonId={balloonCloseButtonDataId}
-        //   title={BalloonButtonTitles.add}
-        //   imageSrc={}
-        //   description={}
-        //   buttonTitle={}
-        //   onClick={}
-        //   onLike={}
-        //   isLike={}
-        // />
+        <Marker
+          id={point.id}
+          type={point.type}
+          imageSrc={point.preview_image}
+        />
       );
     case MarkerTypes.promo:
       return (
-        <span>Point of promo</span>
+        <Marker
+          id={point.id}
+          type={point.type}
+          imageSrc={point.preview_image}
+        />
       );
     case MarkerTypes.partners:
       return (
-        <span>Point of partners</span>
+        <Marker
+          id={point.id}
+          type={point.type}
+          imageSrc={point.preview_image}
+        />
       );
     default:
       return (
-        <span>Point of excursion</span>
+        <Marker
+          id={point.id}
+          type={point.type}
+          imageSrc={point.preview_image}
+        />
       );
   }
 };
@@ -85,17 +93,14 @@ const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersP
   switch (point.type) {
     case MarkerTypes.route:
       return (
-        <span>Point of 1</span>
-        // <Balloon
-        //   closeButtonId={balloonCloseButtonDataId}
-        //   title={BalloonButtonTitles.}
-        //   imageSrc={}
-        //   description={}
-        //   buttonTitle={}
-        //   onClick={}
-        //   onLike={}
-        //   isLike={}
-        // />
+        <BalloonInfo
+          closeButtonId={balloonCloseButtonDataId}
+          title={BalloonTitles.route}
+          imageSrc={BalloonImagesSrc.route}
+          description={BalloonDescription.route}
+          buttonTitle={BalloonButtonTitles.add}
+          onClick={() => console.log("CLICK Take route")}
+        />
       );
     case MarkerTypes.promo:
       return (
@@ -110,23 +115,80 @@ const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersP
       );
     case MarkerTypes.partners:
       return (
-        <span>Point of partners</span>
+        <BalloonInfo
+          closeButtonId={balloonCloseButtonDataId}
+          title={BalloonTitles.selfie}
+          imageSrc={BalloonImagesSrc.selfie}
+          description={BalloonDescription.selfie}
+          buttonTitle={BalloonButtonTitles.add}
+          onClick={() => console.log("CLICK Take promo")}
+        />
       );
     default:
       return (
-        <span>Point of excursion</span>
+        <BalloonInfo
+          closeButtonId={balloonCloseButtonDataId}
+          title={BalloonTitles.selfie}
+          imageSrc={BalloonImagesSrc.selfie}
+          description={BalloonDescription.selfie}
+          buttonTitle={BalloonButtonTitles.add}
+          onClick={() => console.log("CLICK Take promo")}
+        />
       );
   }
 };
 
+const preparePointsWithContent = (point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints) => {
+  return {
+    // iconComponent: prepareIconComponent(point),
+    coordinates: point.coordinates,
+    balloonComponent: prepareBalloonComponent(point),
+    balloonCloseButtonDataId: balloonCloseButtonDataId,
+  } as IPoint
+};
 
-export const generatePointsWithContent = (points: IMapPoints) => {
-  return points.promoPoints.map((point) => {
-    return {
-      iconComponent: prepareIconComponent(point),
-      coordinates: point.coordinates,
-      balloonComponent: prepareBalloonComponent(point),
-      balloonCloseButtonDataId: balloonCloseButtonDataId,
-    } as IPoint
+export const generatePointsWithContent = (points: IYandexMapPoints) => {
+  const routePoints: IPoint[] = [];
+  const partnersPoints: IPoint[] = [];
+  const excursionPoints: IPoint[] = [];
+  const promoPoints: IPoint[] = [];
+  const selfiePoints: IPoint[] = [];
+
+  points.routePoints.map((point) => { //routePoints !!!!!!!!!!!!!!
+    switch (point.type) {
+      case MarkerTypes.route:
+        routePoints.push(preparePointsWithContent(point));
+        break;
+      case MarkerTypes.promo:
+        promoPoints.push(preparePointsWithContent(point));
+        break;
+      case MarkerTypes.selfie:
+        selfiePoints.push(preparePointsWithContent(point));
+        break;
+      case MarkerTypes.excursion:
+        excursionPoints.push(preparePointsWithContent(point));
+        break;
+      default:
+        partnersPoints.push(preparePointsWithContent(point));
+        break;
+    }
   });
+
+  const allPoint = {
+    routePoints,
+    promoPoints,
+    partnersPoints,
+    // excursionPoints,
+  };
+  
+  return allPoint;
+  // return points.promoPoints.map((point) => {
+  //   return {
+  //     iconComponent: prepareIconComponent(point),
+  //     coordinates: point.coordinates,
+  //     balloonComponent: prepareBalloonComponent(point),
+  //     balloonCloseButtonDataId: balloonCloseButtonDataId,
+  //   } as IPoint
+  // });
+
 };

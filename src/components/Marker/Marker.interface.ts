@@ -1,5 +1,5 @@
 export interface IMarker {
-  id: string;
+  id?: number;
   imageSrc: string;
-  type: string;
+  type?: string;
 }

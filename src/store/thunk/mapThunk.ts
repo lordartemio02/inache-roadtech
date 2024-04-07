@@ -1,14 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-// import { ObjectManager } from "yandex-maps";
-
 import { prepareMap } from "../../services/yandexMap";
 import { points } from "../../__mocks__/mapPoints";
 import { emitMapLoadState, generatePointsWithContent, onPinClick } from "../../services/mapUtils";
-// import { TState } from "../slices/mapSlice";
 
-// interface IThunkConfig {
-//   state: TState;
-// }
 
 export interface IRoutePoints {
   coordinates: number[];
@@ -16,6 +10,7 @@ export interface IRoutePoints {
   price: number;
   count: number;
   type: string;
+  preview_image: string;
 }
 
 export interface IPromoPoints {
@@ -24,6 +19,7 @@ export interface IPromoPoints {
   promo: number;
   step: number;
   type: string;
+  preview_image: string;
 }
 
 export interface IPartnersPoints {
@@ -32,7 +28,8 @@ export interface IPartnersPoints {
   title: string;
   content: string;
   type: string;
-};
+  preview_image: string;
+}
 
 export interface IExcursionPoints {
   coordinates: number[];
@@ -40,15 +37,25 @@ export interface IExcursionPoints {
   title: string;
   content: string;
   type: string;
-};
+  preview_image: string;
+}
+
+export interface ISelfiePoints {
+  coordinates: number[];
+  id: number;
+  title: string;
+  content: string;
+  type: string;
+  preview_image: string;
+}
 
 export interface IMapPoints {
   routePoints: IRoutePoints[];
   promoPoints: IPromoPoints[];
   partnersPoints: IPartnersPoints[];
   excursionPoints: IExcursionPoints[];
-};
-
+  selfiePoints: ISelfiePoints[];
+}
 // export const fetchMapPoint = createAsyncThunk<IMapPoints, void, IThunkConfig>('mapPage/fetchMapPoint', async () => {
 //   return points;
 // });
