@@ -8,6 +8,7 @@ import { BalloonImagesSrc } from "../components/Balloon/Balloon.interface";
 import { IMapPoints } from "../store/thunk/mapThunk";
 import { loadScript } from "./loadScript";
 import { MarkerTypes } from "./mapUtils";
+import Marker from "../components/Marker";
 
 const YANDEX_API_KEY = "2abb6e36-ee29-4a88-9a1e-8c46287f042e";
 
@@ -182,7 +183,7 @@ const generateLayoutWithCloseButtons = (
 export interface IPoint {
   coordinates: number[];
   iconComponent?: ReactElement;
-  balloonComponent?: ReactElement;
+  balloonComponent: ReactElement;
   balloonCloseButtonDataId?: string;
 }
 
@@ -197,6 +198,7 @@ interface IInitMapProps {
   // onBoundsChange?: (e: MapEvent) => void
 }
 
+
 export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
   type: "FeatureCollection",
   features: points.map((point, index) => ({
@@ -207,7 +209,7 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
       pane: "balloon",
       hideIconOnBalloonOpen: false,
 
-      iconLayout:
+      iconLayout: 
         point.iconComponent === undefined
           ? undefined
           : generateLayout({
@@ -326,7 +328,7 @@ const init = ({ points }: IInitMapProps) => {
   //       // console.log(coordinates, coord,
   //       //   coordinates.every((element, index) => { return element === points?.routePoints[i].coordinates[index] }));
   //       ymaps.geoObject.addon.balloon.get(way);
-  //       const customLayout = ymaps.templateLayoutFactory.createClass('<img src="/src/assets/images/image_215.png" width="30" height="30">');
+        // const customLayout = ymaps.templateLayoutFactory.createClass('<img src="/src/assets/images/Diamond.png" width="30" height="30">');
   //       wayPoint.options.set(
   //         // geoData
   //         {
@@ -432,75 +434,83 @@ const init = ({ points }: IInitMapProps) => {
   const geoData = generateGeoData(points?.partnersPoints as IPoint[]);
   objectManager.add(geoData);
 
-  const generatePointsWithContent = (points: IMapPoints) => {
-    points.routePoints.map((point) => {
-      let myPlacemark;
+  // const generatePointsWithContent = (points: IMapPoints) => {
+  //   points.routePoints.map((point) => {
+  //     let myPlacemark;
 
-      switch (point.type) {
-        case MarkerTypes.promo:
-          myPlacemark = new ymaps.Placemark(
-            point.coordinates,
-            {},
-            {
-              iconLayout: "default#image",
-              iconImageHref: BalloonImagesSrc.promo,
-              iconImageSize: [30, 30],
-              iconImageOffset: [-6, -19],
-            }
-          );
-          mapInstance.geoObjects.add(myPlacemark);
-          break;
-        case MarkerTypes.selfie:
-          // eslint-disable-next-line no-case-declarations
-          myPlacemark = new ymaps.Placemark(
-            point.coordinates,
-            {},
-            {
-              iconLayout: "default#image",
-              iconImageHref: BalloonImagesSrc.selfie,
-              iconImageSize: [30, 30],
-              iconImageOffset: [-6, -19],
-            }
-          );
-          mapInstance.geoObjects.add(myPlacemark);
-          break;
-        case MarkerTypes.partners:
-          // eslint-disable-next-line no-case-declarations
-          myPlacemark = new ymaps.Placemark(
-            point.coordinates,
-            {},
-            {
-              iconLayout: "default#image",
-              iconImageHref: BalloonImagesSrc.pin,
-              iconImageSize: [30, 30],
-              iconImageOffset: [-6, -19],
-            }
-          );
-          mapInstance.geoObjects.add(myPlacemark);
-          break;
-        default:
-          break;
-      }
+  //     switch (point.type) {
+  //       case MarkerTypes.promo:
+  //         myPlacemark = new ymaps.Placemark(
+  //           point.coordinates,
+  //           {},
+  //           {
+  //             iconLayout: "default#image",
+  //             iconImageHref: BalloonImagesSrc.promo,
+  //             iconImageSize: [30, 30],
+  //             iconImageOffset: [-6, -19],
+  //           }
+  //         );
+  //         mapInstance.geoObjects.add(myPlacemark);
+  //         break;
+  //       case MarkerTypes.selfie:
+  //         // eslint-disable-next-line no-case-declarations
+  //         myPlacemark = new ymaps.Placemark(
+  //           point.coordinates,
+  //           {},
+  //           {
+  //             iconLayout: "default#image",
+  //             iconImageHref: BalloonImagesSrc.selfie,
+  //             iconImageSize: [30, 30],
+  //             iconImageOffset: [-6, -19],
+  //           }
+  //         );
+  //         mapInstance.geoObjects.add(myPlacemark);
+  //         break;
+  //       case MarkerTypes.partners:
+  //         // eslint-disable-next-line no-case-declarations
+  //         myPlacemark = new ymaps.Placemark(
+  //           point.coordinates,
+  //           {},
+  //           {
+  //             iconLayout: "default#image",
+  //             iconImageHref: BalloonImagesSrc.pin,
+  //             iconImageSize: [30, 30],
+  //             iconImageOffset: [-6, -19],
+  //           }
+  //         );
+  //         mapInstance.geoObjects.add(myPlacemark);
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   });
+  // };
+  // generatePointsWithContent(points as IMapPoints);
+  const myPlacemark = new ymaps.Placemark([56.31155000000001, 44.00583], { },
+    {
+      iconLayout: 'default#image',
+      iconImageHref: '/src/assets/images/Camera.png',
+      iconImageSize: [30, 30],
+      iconImageOffset: [-6, -19],
     });
-  };
-  generatePointsWithContent(points as IMapPoints);
-  // const myPlacemark = new ymaps.Placemark([55.61815671990187, 37.02327668669118], { },
-  //   {
-  //     iconLayout: 'default#image',
-  //     iconImageHref: '/src/assets/images/Camera.png',
-  //     iconImageSize: [30, 30],
-  //     iconImageOffset: [-6, -19],
-  //   });
-  // const myPlacemark2 = new ymaps.Placemark([55.61815671990187, 37.02327668669118], { },
-  //   {
-  //     iconLayout: 'default#image',
-  //     iconImageHref: '/src/assets/images/Diamond.png',
-  //     iconImageSize: [30, 30],
-  //     iconImageOffset: [-6, -19],
-  //   });
+  const myPlacemark2 = new ymaps.Placemark([56.2929, 43.9352], { },
+    {
+      iconLayout: 'default#image',
+      iconImageHref: '/src/assets/images/Compass.png',
+      iconImageSize: [30, 30],
+      iconImageOffset: [-6, -19],
+    });
 
-  // mapInstance.geoObjects.add(myPlacemark);
-  // mapInstance.geoObjects.add(myPlacemark2);
+  const myPlacemark3 = new ymaps.Placemark([56.2855, 43.9306], { },
+    {
+      iconLayout: 'default#image',
+      iconImageHref: '/src/assets/images/Diamond.png',
+      iconImageSize: [30, 30],
+      iconImageOffset: [-6, -19],
+    });
+  mapInstance.geoObjects.add(myPlacemark);
+  mapInstance.geoObjects.add(myPlacemark2);
+  mapInstance.geoObjects.add(myPlacemark3);
   // customizePoint();
 
   // mapInstance.container.events.add('click', (event: any) => {

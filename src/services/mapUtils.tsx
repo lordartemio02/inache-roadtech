@@ -14,6 +14,7 @@ import {
   IRoutePoints,
 } from "../store/thunk/mapThunk";
 import { IPoint, TLoadingState } from "./yandexMap";
+import img from "../../src/assets/images/Diamond.png"
 
 const balloonCloseButtonDataId = "balloonCloseButtonDataId";
 
@@ -69,13 +70,13 @@ export const emitMapLoadState = (state: TLoadingState) => {
 //         />
 //       );
 //     case MarkerTypes.promo:
-//       return (
-//         <Marker
-//           id={point.id}
-//           type={point.type}
-//           imageSrc={point.preview_image}
-//         />
-//       );
+      // return (
+      //   <Marker
+      //     id={point.id}
+      //     type={point.type}
+      //     imageSrc={img}
+      //   />
+      // );
 //     case MarkerTypes.partners:
 //       return (
 //         <Marker
@@ -137,7 +138,7 @@ const prepareBalloonComponent = (
         <BalloonInfo
           closeButtonId={balloonCloseButtonDataId}
           title={BalloonTitles.ej}
-          imageSrc={BalloonImagesSrc.ej}
+          imageSrc={img}
           description={BalloonDescription.ej}
           buttonTitle={BalloonButtonTitles.next}
           onClick={() => console.log("CLICK Take promo")}
