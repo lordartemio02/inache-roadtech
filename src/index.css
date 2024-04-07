@@ -140,14 +140,14 @@ button:focus-visible {
 }
 
 #YandexMapId {
-  margin-top: 98px;
-  min-height: calc(100vh - 98px);
+  margin-top: 74px;
+  min-height: calc(100vh - 74px);
 }
 
 @media (max-width: 768px) {
   #YandexMapId {
-    margin-top: 48px;
-    min-height: calc(100vh - 48px);
+    margin-top: 74px;
+    min-height: calc(100vh - 74px);
   }
 }
 

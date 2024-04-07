@@ -3,11 +3,11 @@ import { FC, useState } from "react";
 import logo from "/logo.svg";
 
 import {
-  circleFlagsIcon,
+  // circleFlagsIcon,
   CloseIcon,
   HamburgerIcon,
   HeartIcon,
-  mosturizmIcon,
+  // mosturizmIcon,
   userIcon,
 } from "../../assets/icons";
 import Button from "../Button";
