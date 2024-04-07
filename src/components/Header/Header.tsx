@@ -15,6 +15,7 @@ import Navigation from "../Navigation";
 
 const Header: FC = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const isMobile = false;
 
   const handleClickMenu = () => {
     setIsOpenMenu((prev) => !prev);
@@ -22,7 +23,7 @@ const Header: FC = () => {
 
   return (
     <header
-      className={`z-50 fixed top-0 left-0 w-full bg-white z-[100] ${
+      className={`z-50 fixed top-0 left-0 w-full bg-white z-[100] pl-[16px] pr-[16px] ${
         isOpenMenu ? "rounded-b-3xl" : ""
       }`}>
       <div className="container flex justify-between items-center py-3">
@@ -32,35 +33,46 @@ const Header: FC = () => {
             <div className="w-0.5 h-7 rounded-sm bg-natural-500" />
             <div className="uppercase text-brand-100 font-bold">Россия</div>
           </div>
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div
               aria-hidden
               onClick={handleClickMenu}
-              className="p-3 flex items-center gap-2 cursor-pointer">
+              className="py-2 flex items-center gap-2 cursor-pointer">
               {isOpenMenu ? <CloseIcon /> : <HamburgerIcon />}
-              Меню
+              { isMobile ? "Меню" : "" }
             </div>
-            <Button type="thetriary">Бонусы</Button>
-          </div>
+            {/* <Button type="thetriary">{ isMobile ? "Бонусы" : "" }</Button> */}
+          {/* </div> */}
         </div>
         <div>
           <div className="flex items-center">
-            <Button
+            {/* <Button
               type="thetriary"
+              className="py-2"
               leftIcon={<img src={mosturizmIcon} alt="Мои планы" />}>
-              Проекты Мостуризма
-            </Button>
-            <Button type="thetriary" leftIcon={<HeartIcon />}>
-              Мои планы
+              { isMobile ? "Проекты Мостуризма" : "" }
+            </Button> */}
+            <Button type="thetriary" className="py-2 gap-0" leftIcon={<HeartIcon />}>
+              { isMobile ? "Мои планы" : "" }
             </Button>
             <Button
               type="thetriary"
+              className="py-2 gap-0"
               leftIcon={<img src={userIcon} alt="Профиль" />}>
-              Войти
+              { isMobile ? "Войти" : "" }
             </Button>
-            <Button type="thetriary">
+            {/* <Button type="thetriary" className="py-2">
               <img src={circleFlagsIcon} alt="Локализация" />
-            </Button>
+            </Button> */}
+            <div className="flex items-center gap-2">
+              <div
+                aria-hidden
+                onClick={handleClickMenu}
+                className="py-2 flex items-center gap-2 cursor-pointer">
+                {isOpenMenu ? <CloseIcon stroke="#000000" /> : <HamburgerIcon />}
+                { isMobile ? "Меню" : "" }
+              </div>
+            </div>
           </div>
         </div>
       </div>
