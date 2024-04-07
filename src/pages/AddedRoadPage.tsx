@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { UnionIcon } from "../assets/icons";
 import roadAdd from "../assets/images/RoadAdd.png";
 import Button from "../components/Button";
@@ -7,7 +7,7 @@ import { Loader } from "../components/Loader";
 import { useGetRouteByIdQuery } from "../store/api/routesApi";
 
 const AddedRoadPage = () => {
-  const nav = useNavigate();
+  // const nav = useNavigate();
   const { id } = useParams();
   const { data, isLoading } = useGetRouteByIdQuery({ id });
 

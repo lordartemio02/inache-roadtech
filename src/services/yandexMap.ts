@@ -4,11 +4,11 @@
 import { ReactElement } from "react";
 import ReactDOMServer from "react-dom/server";
 import { IClassConstructor, IShape, layout } from "yandex-maps";
-import { BalloonImagesSrc } from "../components/Balloon/Balloon.interface";
-import { IMapPoints } from "../store/thunk/mapThunk";
+// import { BalloonImagesSrc } from "../components/Balloon/Balloon.interface";
+// import { IMapPoints } from "../store/thunk/mapThunk";
 import { loadScript } from "./loadScript";
-import { MarkerTypes } from "./mapUtils";
-import Marker from "../components/Marker";
+// import { MarkerTypes } from "./mapUtils";
+// import Marker from "../components/Marker";
 
 const YANDEX_API_KEY = "2abb6e36-ee29-4a88-9a1e-8c46287f042e";
 
@@ -198,7 +198,6 @@ interface IInitMapProps {
   // onBoundsChange?: (e: MapEvent) => void
 }
 
-
 export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
   type: "FeatureCollection",
   features: points.map((point, index) => ({
@@ -209,7 +208,7 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
       pane: "balloon",
       hideIconOnBalloonOpen: false,
 
-      iconLayout: 
+      iconLayout:
         point.iconComponent === undefined
           ? undefined
           : generateLayout({
@@ -328,7 +327,7 @@ const init = ({ points }: IInitMapProps) => {
   //       // console.log(coordinates, coord,
   //       //   coordinates.every((element, index) => { return element === points?.routePoints[i].coordinates[index] }));
   //       ymaps.geoObject.addon.balloon.get(way);
-        // const customLayout = ymaps.templateLayoutFactory.createClass('<img src="/src/assets/images/Diamond.png" width="30" height="30">');
+  // const customLayout = ymaps.templateLayoutFactory.createClass('<img src="/src/assets/images/Diamond.png" width="30" height="30">');
   //       wayPoint.options.set(
   //         // geoData
   //         {
@@ -486,28 +485,37 @@ const init = ({ points }: IInitMapProps) => {
   //   });
   // };
   // generatePointsWithContent(points as IMapPoints);
-  const myPlacemark = new ymaps.Placemark([56.31155000000001, 44.00583], { },
+  const myPlacemark = new ymaps.Placemark(
+    [56.31155000000001, 44.00583],
+    {},
     {
-      iconLayout: 'default#image',
-      iconImageHref: '/src/assets/images/Camera.png',
+      iconLayout: "default#image",
+      iconImageHref: "/src/assets/images/Camera.png",
       iconImageSize: [30, 30],
       iconImageOffset: [-6, -19],
-    });
-  const myPlacemark2 = new ymaps.Placemark([56.2929, 43.9352], { },
+    }
+  );
+  const myPlacemark2 = new ymaps.Placemark(
+    [56.2929, 43.9352],
+    {},
     {
-      iconLayout: 'default#image',
-      iconImageHref: '/src/assets/images/Compass.png',
+      iconLayout: "default#image",
+      iconImageHref: "/src/assets/images/Compass.png",
       iconImageSize: [30, 30],
       iconImageOffset: [-6, -19],
-    });
+    }
+  );
 
-  const myPlacemark3 = new ymaps.Placemark([56.2855, 43.9306], { },
+  const myPlacemark3 = new ymaps.Placemark(
+    [56.2855, 43.9306],
+    {},
     {
-      iconLayout: 'default#image',
-      iconImageHref: '/src/assets/images/Diamond.png',
+      iconLayout: "default#image",
+      iconImageHref: "/src/assets/images/Diamond.png",
       iconImageSize: [30, 30],
       iconImageOffset: [-6, -19],
-    });
+    }
+  );
   mapInstance.geoObjects.add(myPlacemark);
   mapInstance.geoObjects.add(myPlacemark2);
   mapInstance.geoObjects.add(myPlacemark3);
