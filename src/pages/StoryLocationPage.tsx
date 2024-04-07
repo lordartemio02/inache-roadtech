@@ -7,7 +7,7 @@ import CircleImage from "../components/CircleImage";
 import Layout from "../components/Layout";
 import data from "../mock/cardsList.json";
 
-const StorySliderPage = () => {
+const StoryLocationPage = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const nav = useNavigate();
 
@@ -36,7 +36,9 @@ const StorySliderPage = () => {
         </div>
       </div>
       <div className="fixed w-full bottom-4 h-[394px]">
-        <div className="absolute -top-40 left-9 flex flex-col items-center">
+        <div
+          className="absolute -top-40 left-9 flex flex-col items-center"
+          onClick={() => nav("/story/info")}>
           <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
           <div className="bg-white w-[1px] h-28"></div>
         </div>
@@ -57,4 +59,4 @@ const StorySliderPage = () => {
   );
 };
 
-export default StorySliderPage;
+export default StoryLocationPage;

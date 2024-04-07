@@ -7,7 +7,7 @@ import CameraIcon from "./CameraIcon.svg?react";
 import ChevronLeft from "./ChevronLeft.svg?react";
 import circleFlagsIcon from "./circleFlagsIcon.svg";
 import ClockIcon from "./ClockIcon.svg?react";
-import CloseIcon from "./CloseIcon.svg?react";
+import CloseIcon from "./CloseIcon";
 import dzenIcon from "./dzenIcon.svg";
 import HamburgerIcon from "./HamburgerIcon.svg?react";
 import HeartIcon from "./HeartIcon.svg?react";
@@ -37,7 +37,6 @@ export {
   CalendarIcon,
   CameraIcon,
   ClockIcon,
-  CloseIcon,
   HamburgerIcon,
   HeartIcon,
   MapIcon,
@@ -66,4 +65,5 @@ export {
   OnBikeIcon,
   SmartRoadIcon,
   RoadMainIcon,
+  CloseIcon,
 };

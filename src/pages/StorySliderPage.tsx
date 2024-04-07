@@ -1,57 +1,50 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronLeft } from "../assets/icons";
-import Button from "../components/Button";
-import CarouselStories from "../components/CarouselStories";
-import CircleImage from "../components/CircleImage";
+import { CloseIcon, HeartIcon } from "../assets/icons";
 import Layout from "../components/Layout";
-import data from "../mock/cardsList.json";
+import ProgressBar from "../components/ProgressBar";
 
 const StorySliderPage = () => {
-  const [currentIndex, setCurrentIndex] = useState(1);
   const nav = useNavigate();
 
-  const onChangeIndex = (index: number) => {
-    setCurrentIndex(index);
-  };
+  const [like, setLike] = useState(false);
 
   const goBack = () => {
     nav(-1);
   };
 
+  const onClickLike = () => {
+    setLike((prev) => !prev);
+  };
+
   return (
     <Layout hideFooter>
-      <div
-        className={`bg-[url(${
-          data[0].images[currentIndex - 1]?.image
-        })] h-[546px] bg-center`}>
-        <div className="flex flex-row justify-between p-4">
-          <Button
-            type="outline"
-            className="!py-1 !px-4"
-            onClick={goBack}
-            leftIcon={<ChevronLeft />}>
-            Назад
-          </Button>
-        </div>
-      </div>
-      <div className="fixed w-full bottom-4 h-[394px]">
-        <div className="absolute -top-40 left-9 flex flex-col items-center">
-          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
-          <div className="bg-white w-[1px] h-28"></div>
-        </div>
-        <div className="absolute -top-52 right-12 flex flex-col items-center">
-          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
-          <div className="bg-white w-[1px] h-60"></div>
-        </div>
-        <div className="absolute -top-64 right-36 flex flex-col items-center">
-          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
-          <div className="bg-white w-[1px] h-60"></div>
-        </div>
-        <CarouselStories
-          onChangeIndex={onChangeIndex}
-          images={data[0].images}
+      <div className="h-[calc(100vh-100px)] w-full relative">
+        <img
+          className="h-[calc(100vh-100px)] w-full object-cover"
+          src="https://cms.russpass.ru/v1/file/65420b82d2b6381af066dba8"
         />
+        <div className="absolute top-5 left-4 right-4">
+          <ProgressBar />
+          <div className="mt-4 flex flex-row justify-between items-center">
+            <div className="flex flex-row gap-3 items-center">
+              <img
+                className="inline-block size-7 rounded-full"
+                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                alt="Image Description"
+              />
+              <p className="text-[14px] leading-4 text-white">Анна Ахматова</p>
+            </div>
+            <CloseIcon className="w-5 h-5" onClick={goBack} />
+          </div>
+        </div>
+        <div className="absolute bottom-6 px-3 flex flex-row justify-between w-full">
+          <p className="max-w-[290px] break-words line-clamp-3 text-white">
+            Живописное и воодушевляющее место, где стоит побывать каждому и еще
+            какой-то текст, чтобы поместить в три строки
+          </p>
+          <HeartIcon className={`min-w-[24px] min-h-[24px]`} />
+        </div>
       </div>
     </Layout>
   );

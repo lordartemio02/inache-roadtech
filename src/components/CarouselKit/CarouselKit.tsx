@@ -1,12 +1,17 @@
 import { FC } from "react";
 import Carousel from "react-multi-carousel";
+import LikeButton from "../LikeButton";
 import {
   responsiveMultiplySlide,
   responsiveSingleSlide,
 } from "./CarouselKit.config";
 import { CarouselKitProps } from "./CarouselKit.interfaces";
 
-const CarouselKit: FC<CarouselKitProps> = ({ images, singleSlide = true }) => {
+const CarouselKit: FC<CarouselKitProps> = ({
+  images,
+  singleSlide = true,
+  showLike,
+}) => {
   return (
     <Carousel
       showDots={singleSlide}
@@ -28,6 +33,11 @@ const CarouselKit: FC<CarouselKitProps> = ({ images, singleSlide = true }) => {
               singleSlide ? "" : "rounded-16"
             }`}
           />
+          {showLike ? (
+            <div className="absolute right-3 top-3">
+              <LikeButton isActive />
+            </div>
+          ) : null}
           {singleSlide ? null : (
             <>
               <div className="top-3 left-3 absolute flex z-[30] items-center justify-center bg-white w-6 h-6 rounded-full text-body-p3">

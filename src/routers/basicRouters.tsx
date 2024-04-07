@@ -5,6 +5,7 @@ import {
   NotFoundPage,
   RoadPage,
   StoryLocationPage,
+  StorySliderPage,
 } from "../pages";
 
 const basicRoutes = [
@@ -27,6 +28,10 @@ const basicRoutes = [
   {
     path: "/story-location",
     element: <StoryLocationPage />,
+  },
+  {
+    path: "/story/info",
+    element: <StorySliderPage />,
   },
 ];
 
