@@ -1,9 +1,12 @@
 import { FC } from "react";
 import Carousel from "react-multi-carousel";
+import { useNavigate } from "react-router-dom";
 import { responsiveMultiplySlide } from "./CarouselMain.config";
 import { CarouselKitProps } from "./CarouselMain.interfaces";
 
 const CarouselMain: FC<CarouselKitProps> = ({ images }) => {
+  const nav = useNavigate();
+
   return (
     <Carousel
       showDots={false}
@@ -19,7 +22,8 @@ const CarouselMain: FC<CarouselKitProps> = ({ images }) => {
       {images.map((item, index) => (
         <div
           key={index}
-          className="w-full h-full relative rounded-20 flex flex-row p-1 bg-white">
+          className="w-full h-full relative rounded-20 flex flex-row p-1 bg-white"
+          onClick={() => nav("/story-location")}>
           <img
             src={item.image}
             alt="img"
