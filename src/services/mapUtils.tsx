@@ -126,10 +126,10 @@ const prepareBalloonComponent = (
       return (
         <BalloonInfo
           closeButtonId={balloonCloseButtonDataId}
-          title={BalloonTitles.selfie}
-          imageSrc={BalloonImagesSrc.selfie}
-          description={BalloonDescription.selfie}
-          buttonTitle={BalloonButtonTitles.add}
+          title={BalloonTitles.ej}
+          imageSrc={BalloonImagesSrc.ej}
+          description={BalloonDescription.ej}
+          buttonTitle={BalloonButtonTitles.next}
           onClick={() => console.log("CLICK Take promo")}
         />
       );
@@ -137,10 +137,10 @@ const prepareBalloonComponent = (
       return (
         <BalloonInfo
           closeButtonId={balloonCloseButtonDataId}
-          title={BalloonTitles.selfie}
-          imageSrc={BalloonImagesSrc.selfie}
-          description={BalloonDescription.selfie}
-          buttonTitle={BalloonButtonTitles.add}
+          title={BalloonTitles.ej}
+          imageSrc={BalloonImagesSrc.ej}
+          description={BalloonDescription.ej}
+          buttonTitle={BalloonButtonTitles.next}
           onClick={() => console.log("CLICK Take promo")}
         />
       );

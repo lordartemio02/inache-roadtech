@@ -210,7 +210,7 @@ export const generateGeoData = (points: IPoint[]): Record<string, unknown> => ({
             }),
       balloonAutoPan: true,
       balloonPanelMaxMapArea: 0,
-      balloonAutoPanMargin: [-50, 200, 640, -350], //верхний, правый, нижний и левый
+      balloonAutoPanMargin: [-250, 200, 640, -350], //верхний, правый, нижний и левый
       balloonLayout: point.balloonComponent
         ? generateLayoutWithCloseButtons(
             ReactDOMServer.renderToStaticMarkup(point.balloonComponent),
