@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { basicApi } from "./api/api";
+import { api } from "./api/api";
 import reducerAuth from "./slices/authSlice";
 import reducerMap from "./slices/mapSlice";
 
@@ -7,11 +7,11 @@ export const store = configureStore({
   reducer: {
     reducerAuth,
     reducerMap,
-    [basicApi.reducerPath]: basicApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware(),
-    basicApi.middleware,
+    api.middleware,
   ],
 });
 

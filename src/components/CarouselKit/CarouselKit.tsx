@@ -8,7 +8,7 @@ import {
 import { CarouselKitProps } from "./CarouselKit.interfaces";
 
 const CarouselKit: FC<CarouselKitProps> = ({
-  images,
+  points,
   singleSlide = true,
   showLike,
 }) => {
@@ -24,10 +24,10 @@ const CarouselKit: FC<CarouselKitProps> = ({
       slidesToSlide={1}
       itemClass={singleSlide ? "" : "mr-3"}
       className={`w-full z-0 ${singleSlide ? "h-full" : "h-[240px]"}`}>
-      {images.map((item, index) => (
+      {points.map((item, index) => (
         <div key={index} className="w-full h-full relative rounded-16">
           <img
-            src={item.image}
+            src={item.preview_image}
             alt="img"
             className={`w-full h-full object-cover ${
               singleSlide ? "" : "rounded-16"
@@ -47,7 +47,7 @@ const CarouselKit: FC<CarouselKitProps> = ({
               <div className="absolute bottom-0 left-3 right-0 h-[104px] z-[25]">
                 <p className="mt-4 text-white/80">{item.type}</p>
                 <p className="mt-1 break-words line-clamp-2 text-white">
-                  {item.title}
+                  {item.name}
                 </p>
               </div>
             </>

@@ -1,5 +1,7 @@
+import { Point } from "../../store/interfaces/Routes";
+
 export type CarouselKitProps = {
-  images: CarouselItem[];
+  points: Point[];
   singleSlide?: boolean;
   showLike?: boolean;
 };

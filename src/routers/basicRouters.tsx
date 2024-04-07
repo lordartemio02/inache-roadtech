@@ -7,6 +7,7 @@ import {
   StoryLocationPage,
   StorySliderPage,
 } from "../pages";
+import LoginPage from "../pages/LoginPage";
 
 const basicRoutes = [
   {
@@ -22,7 +23,7 @@ const basicRoutes = [
     element: <MapPage />,
   },
   {
-    path: "/road",
+    path: "/road/:id",
     element: <RoadPage />,
   },
   {
@@ -32,6 +33,10 @@ const basicRoutes = [
   {
     path: "/story/info",
     element: <StorySliderPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 ];
 

@@ -1,12 +1,7 @@
-import { CarouselItem } from "../CarouselKit/CarouselKit.interfaces";
+import { Routes } from "../../store/interfaces/Routes";
 
-export interface ICard {
-  title: string;
-  images: CarouselItem[];
-  geo: string;
-  type: string;
-  location: string;
-  isLike: boolean;
+export type ICard = {
+  isLike?: boolean;
   onClick: () => void;
   onLike: () => void;
-}
+} & Routes;

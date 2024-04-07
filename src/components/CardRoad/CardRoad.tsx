@@ -2,20 +2,19 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AdvantageIcon } from "../../assets/icons";
 import map from "../../assets/images/Map.png";
-import { tags } from "../../mock/tagsList";
 
 import Button from "../Button";
 import CarouselKit from "../CarouselKit";
 import LikeButton from "../LikeButton";
 import { CardRoadProps } from "./CardRoad.interface";
 
-const types = ["Пеший", "Велосипедный", "Автомобильный"];
+// const types = ["Пеший", "Велосипедный", "Автомобильный"];
 
 const CardRoad: FC<CardRoadProps> = (props) => {
   const [indexDay, setIndexDay] = useState(0);
   const nav = useNavigate();
 
-  const { title, images, onClick, onLike, isLike } = props;
+  const { onClick, title, points, caption, tags, days_count } = props;
 
   return (
     <div className="rounded-[20px] overflow-hidden flex flex-col h-full">
@@ -45,17 +44,17 @@ const CardRoad: FC<CardRoadProps> = (props) => {
             />
           </div>
           <p className="max-w-[218px] text-white text-[12px]">
-            {images.length} отзывов пользователей о данном маршруте
+            {/* {images.length} отзывов пользователей о данном маршруте */}
           </p>
         </div>
-        <CarouselKit images={images} />
+        <CarouselKit points={points} />
         {/* <LikeButton
           className="absolute top-4 right-4 z-10"
           onClick={onLike}
           isActive={isLike}
         /> */}
         <div className="absolute bottom-2 right-2 rounded-8 px-2 py-[6px] bg-[#68CC58]">
-          <p className="text-natural-100">Бесплатный</p>
+          <p className="text-natural-100">{caption}</p>
         </div>
       </div>
       <div className="mx-4 mt-4 pb-4 flex flex-col gap-[30px] h-full border-b">
@@ -77,29 +76,40 @@ const CardRoad: FC<CardRoadProps> = (props) => {
       <div className="p-4">
         <p className="text-mobile-subTitle mb-2">Особенно нравится</p>
         <div className="flex flex-wrap gap-1">
-          {tags.map((tag) => (
-            <div className="flex flex-row gap-1 items-center justify-center bg-natural-700 px-[10px] py-1 rounded-8">
-              <AdvantageIcon />
-              <p>{tag.name}</p>
-            </div>
-          ))}
+          {tags &&
+            tags.length > 0 &&
+            tags.map((tag, i) => (
+              <div
+                key={"tag" + i}
+                className="flex flex-row gap-1 items-center justify-center bg-natural-700 px-[10px] py-1 rounded-8">
+                <AdvantageIcon />
+                <p>{tag}</p>
+              </div>
+            ))}
         </div>
         <div onClick={() => nav("/map")} className="my-5">
           <img className="w-[375px] h-[275px]" src={map} alt="map" />
         </div>
         <div className="flex flex-row gap-6 mt-4 mb-2">
-          {types.map((_, i) => (
-            <div
-              className={`flex flex-row gap-6 pb-2 ${
-                i === indexDay
-                  ? "text-natural-100 border-b-2 border-b-yellow-100"
-                  : "text-natural-400"
-              }`}
-              onClick={() => setIndexDay(i)}>{`${i + 1} день`}</div>
-          ))}
+          {Array(days_count)
+            .fill("0")
+            .map((_, i) => (
+              <div
+                key={i + "days"}
+                className={`flex flex-row gap-6 pb-2 ${
+                  i === indexDay
+                    ? "text-natural-100 border-b-2 border-b-yellow-100"
+                    : "text-natural-400"
+                }`}
+                onClick={() => setIndexDay(i)}>{`${i + 1} день`}</div>
+            ))}
         </div>
         <div className="h-60 w-full relative">
-          <CarouselKit singleSlide={false} images={images} showLike />
+          <CarouselKit
+            singleSlide={false}
+            points={points.filter((el) => el.day_number === indexDay + 1)}
+            showLike
+          />
         </div>
       </div>
     </div>

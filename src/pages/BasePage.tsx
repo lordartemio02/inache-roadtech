@@ -37,7 +37,7 @@ const BasePage = () => {
   };
 
   const onSearch = () => {
-    nav("/road");
+    nav(`/road/4d6390e5-0a3d-4366-88c2-26d61e64bfa1`);
   };
 
   console.log("====================================");

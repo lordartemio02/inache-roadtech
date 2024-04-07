@@ -12,6 +12,9 @@ import dzenIcon from "./dzenIcon.svg";
 import HamburgerIcon from "./HamburgerIcon.svg?react";
 import HeartIcon from "./HeartIcon.svg?react";
 import HotelIcon from "./HotelIcon.svg?react";
+import LoginMosIcon from "./LoginMosIcon.svg?react";
+import LoginVkIcon from "./LoginVkIcon.svg?react";
+import LoginYandexIcon from "./LoginYandexIcon.svg?react";
 import MapIcon from "./MapIcon.svg?react";
 import MapPinIcon from "./MapPinIcon.svg?react";
 import MessageIcon from "./MessageIcon.svg?react";
@@ -66,4 +69,7 @@ export {
   SmartRoadIcon,
   RoadMainIcon,
   CloseIcon,
+  LoginMosIcon,
+  LoginVkIcon,
+  LoginYandexIcon,
 };
