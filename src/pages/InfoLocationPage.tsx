@@ -2,12 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { PluseIcon } from "../assets/icons";
 import Layout from "../components/Layout";
 import { Loader } from "../components/Loader";
-import { useGetRouteByIdQuery } from "../store/api/routesApi";
+import { useGetPointByIdQuery } from "../store/api/pointApi";
 
 const InfoLocationPage = () => {
   const nav = useNavigate();
   const { id } = useParams();
-  const { data, isLoading } = useGetRouteByIdQuery({ id });
+  const { data, isLoading } = useGetPointByIdQuery({ id });
 
   return (
     <Layout hideFooter>
@@ -18,7 +18,7 @@ const InfoLocationPage = () => {
           <div className="flex flex-row overscroll-auto whitespace-nowrap gap-3">
             <div className="relative">
               <img
-                onClick={() => nav("/")}
+                onClick={() => nav(`/story-create/${id}`)}
                 className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
                 src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
                 alt="Image Description"
@@ -27,54 +27,17 @@ const InfoLocationPage = () => {
                 <PluseIcon />
               </div>
             </div>
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
-            <img
-              className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
-              src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-              alt="Image Description"
-            />
+            {data &&
+              data.attachments.map((item) => (
+                <img
+                  className="inline-block size-12 rounded-full ring-2 ring-white z-[4]"
+                  src={item}
+                  alt="Image Description"
+                />
+              ))}
           </div>
           <div className="rounded-32 relative">
-            <img src={data?.title || ""} alt="image" />
+            <img src={data?.preview_image || ""} alt="image" />
           </div>
         </>
       )}
