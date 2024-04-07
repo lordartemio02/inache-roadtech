@@ -1,6 +1,7 @@
 import { IBalloonInfo } from "./BalloonInfo.interface";
 import Button from "../Button";
 import ButtonClose from "../ButtonClose";
+import img from "../../assets/images/Diamond.png"
 
 export const BalloonInfo = ({
   closeButtonId,
@@ -36,11 +37,21 @@ export const BalloonInfo = ({
 
       <div className="
         text-center items-center justify-center w-[300px] bg-[#FFF5CC] flex flex-col rounded-16 p-[8px] text-natural-100 text-sm shadow-[4px_0px_16px_0px_rgba(0, 0, 0, 0.25)]">
-        Что можно посмотреть: <br/> Вы можете увидеть обитателей кремля - воробьев, которые весело чирикают на древних стенах
+        Что можно посмотреть: <br/> Вы можете заметить уличных художников, рисующих красивые картинки на асфальте
       </div>
 
-      <div className="flex text-center text-xsm font-suisseIntl align-center justify-center font-normal leading-[22px] text-[12px]">
-        Наш следующий пункт назначения - Кул Шариф!
+      <div className="
+        text-center items-center justify-center w-[300px] bg-[#FFF] flex flex-raw rounded-16 p-[8px] text-natural-300 text-sm shadow-[4px_0px_16px_0px_rgba(0, 0, 0, 0.25)]">
+        <img src={img} alt="Rosspass" />
+        <div className="
+          text-center items-center justify-center w-[300px] bg-[#FFF] flex flex-col rounded-16 p-[8px] text-natural-400 text-sm shadow-[4px_0px_16px_0px_rgba(0, 0, 0, 0.25)]">
+          Найдена часть промокода
+          <div className="text-sm">1 из 3 частей</div>
+        </div>
+      </div>
+
+      <div className="flex text-center text-xsm font-suisseIntl align-center justify-center font-normal leading-[22px] text-[12px] text-natural-300">
+        Следующая остановка - улица Баумана!
       </div>
 
       <div className="flex flex-row gap-3 w-full">

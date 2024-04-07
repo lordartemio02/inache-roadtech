@@ -33,7 +33,7 @@ export const enum BalloonImagesSrc {
   selfie = "/src/assets/images/Camera.png",
   start = "/src/assets/images/Flag.png",
   pin = "/src/assets/images/Pin.png",
-  ej = "/src/assets/images/ежик 2.png"
+  ej = "/src/assets/images/ежик.png"
 }
 
 export const enum BalloonTitles {
@@ -51,5 +51,5 @@ export const enum BalloonDescription {
   winning = "Вы собрали весь промокод!",
   selfie = "Делайте снимки ваших путешествий и делитесь в историях вашими впечатлениями!",
   start = "Вперед за впечатлениями!",
-  ej = "Добро пожаловать в Казанский Кремль! Здесь мы стоим у стен кремля, защищавших город с давних времен.",
+  ej = "Пройдемся по самой живописной улице Казани - улице Баумана! Здесь много уютных кафе, ярких лавочек, музыкантов.",
 }

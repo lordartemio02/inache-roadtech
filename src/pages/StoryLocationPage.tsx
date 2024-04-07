@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ChevronLeft } from "../assets/icons";
 import Button from "../components/Button";
 import CarouselStories from "../components/CarouselStories";
@@ -8,7 +8,7 @@ import Layout from "../components/Layout";
 import data from "../mock/cardsList.json";
 
 const StoryLocationPage = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   // const { data, isLoading } = useGetRouteByIdQuery({ id });
   const [currentIndex, setCurrentIndex] = useState(1);
   const nav = useNavigate();

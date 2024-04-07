@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
 import TextArea from "../components/TextArea";
@@ -7,7 +7,6 @@ import { useCreateStoryMutation } from "../store/api/storiesApi";
 const { VITE_APP_BASE_TOKEN } = import.meta.env;
 
 const AddStoriesPage = () => {
-  const nav = useNavigate();
   const { id } = useParams();
   const [value, setValue] = useState("");
   const [file, setFile] = useState<any>(null);
