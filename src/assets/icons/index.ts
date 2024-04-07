@@ -25,6 +25,7 @@ import OnBikeIcon from "./OnBikeIcon.svg";
 import OnBusIcon from "./OnBusIcon.svg";
 import OnCarIcon from "./OnCarIcon.svg";
 import OnFootIcon from "./OnFootIcon.svg";
+import PluseIcon from "./PluseIcon.svg?react";
 import RoadIcon from "./RoadIcon";
 import RoadMainIcon from "./RoadMainIcon.svg?react";
 import SearchIcon from "./SearchIcon.svg?react";
@@ -72,4 +73,5 @@ export {
   LoginMosIcon,
   LoginVkIcon,
   LoginYandexIcon,
+  PluseIcon,
 };

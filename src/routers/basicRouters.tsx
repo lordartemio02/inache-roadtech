@@ -7,6 +7,8 @@ import {
   StoryLocationPage,
   StorySliderPage,
 } from "../pages";
+import AddStoriesPage from "../pages/AddStoriesPage";
+import InfoLocationPage from "../pages/InfoLocationPage";
 import LoginPage from "../pages/LoginPage";
 
 const basicRoutes = [
@@ -37,6 +39,14 @@ const basicRoutes = [
   {
     path: "/login",
     element: <LoginPage />,
+  },
+  {
+    path: "/location/:id",
+    element: <InfoLocationPage />,
+  },
+  {
+    path: "/story-create/:id",
+    element: <AddStoriesPage />,
   },
 ];
 
