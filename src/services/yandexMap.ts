@@ -318,7 +318,7 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
         // console.log(coordinates, coord,
         //   coordinates.every((element, index) => { return element === points?.routePoints[i].coordinates[index] }));
         ymaps.geoObject.addon.balloon.get(way);
-        const customLayout = ymaps.templateLayoutFactory.createClass('<img src="src/assets/images/image_215.png" width="30" height="30">');
+        const customLayout = ymaps.templateLayoutFactory.createClass('<img src="/src/assets/images/image_215.png" width="30" height="30">');
         wayPoint.options.set(
           // geoData
           {
@@ -356,7 +356,7 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
           // Задаем собственную картинку для последней путевой точки.
           // wayPointIconRadius: 50,
           wayPointIconLayout: "default#image",
-          wayPointIconImageHref: "src/assets/images/route.png",
+          wayPointIconImageHref: "/src/assets/images/route.png",
           wayPointIconImageSize: [30, 30],
           wayPointIconImageOffset: [-15, -15],
           // wayPointStartIconColor: "#333",
@@ -460,22 +460,25 @@ const init = ({ points, onPinClick }: IInitMapProps) => {
     });
   }
   generatePointsWithContent(points as IMapPoints);
-  // const myPlacemark = new ymaps.Placemark([55.61815671990187, 37.02327668669118], { }, 
-  //   {
-  //     iconLayout: 'default#image',
-  //     iconImageHref: 'src/assets/images/Camera.png', 
-  //     iconImageSize: [30, 30], 
-  //     iconImageOffset: [-6, -19], 
-  //   });
+  const myPlacemark = new ymaps.Placemark([
+      56.31155000000001,
+      44.00583
+    ], { }, 
+    {
+      iconLayout: 'default#image',
+      iconImageHref: '/src/assets/images/Diamond.png', 
+      iconImageSize: [30, 30], 
+      iconImageOffset: [-6, -19], 
+    });
   // const myPlacemark2 = new ymaps.Placemark([55.61815671990187, 37.02327668669118], { }, 
   //   {
   //     iconLayout: 'default#image',
-  //     iconImageHref: 'src/assets/images/Diamond.png', 
+  //     iconImageHref: '/src/assets/images/Diamond.png', 
   //     iconImageSize: [30, 30], 
   //     iconImageOffset: [-6, -19], 
   //   });
     
-    // mapInstance.geoObjects.add(myPlacemark);
+    mapInstance.geoObjects.add(myPlacemark);
     // mapInstance.geoObjects.add(myPlacemark2);
   // customizePoint();
 

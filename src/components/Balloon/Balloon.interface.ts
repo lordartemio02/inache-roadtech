@@ -26,14 +26,14 @@ export const enum BalloonButtonTitles {
 }
 
 export const enum BalloonImagesSrc {
-  route = "src/assets/images/image 215.png",
-  promo = "src/assets/images/Diamond.png",
-  promoLarge = "src/assets/images/DiamondLarge.png",
-  winning = "src/assets/images/Prize.png",
-  selfie = "src/assets/images/Camera.png",
-  start = "src/assets/images/Flag.png",
-  pin = "src/assets/images/Pin.png",
-  ej = "src/assets/images/ежик 2.png"
+  route = "/src/assets/images/image 215.png",
+  promo = "/src/assets/images/Diamond.png",
+  promoLarge = "/src/assets/images/DiamondLarge.png",
+  winning = "/src/assets/images/Prize.png",
+  selfie = "/src/assets/images/Camera.png",
+  start = "/src/assets/images/Flag.png",
+  pin = "/src/assets/images/Pin.png",
+  ej = "/src/assets/images/ежик 2.png"
 }
 
 export const enum BalloonTitles {
