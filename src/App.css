@@ -28,3 +28,7 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.bg-banner {
+  background-image: url("./assets/images/MapBase.png");
+}

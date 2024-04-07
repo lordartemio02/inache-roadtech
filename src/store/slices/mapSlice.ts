@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { mapContainerId, destroyMap } from "../../services/yandexMap";
+import { createSlice } from "@reduxjs/toolkit";
+import { destroyMap, mapContainerId } from "../../services/yandexMap";
 
 export interface TState {
   id: string;

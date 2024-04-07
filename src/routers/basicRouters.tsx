@@ -5,7 +5,11 @@ import {
   NotFoundPage,
   RoadPage,
   StoryLocationPage,
+  StorySliderPage,
 } from "../pages";
+import AddStoriesPage from "../pages/AddStoriesPage";
+import InfoLocationPage from "../pages/InfoLocationPage";
+import LoginPage from "../pages/LoginPage";
 
 const basicRoutes = [
   {
@@ -21,12 +25,28 @@ const basicRoutes = [
     element: <MapPage />,
   },
   {
-    path: "/road",
+    path: "/road/:id",
     element: <RoadPage />,
   },
   {
     path: "/story-location",
     element: <StoryLocationPage />,
+  },
+  {
+    path: "/story/info",
+    element: <StorySliderPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/location/:id",
+    element: <InfoLocationPage />,
+  },
+  {
+    path: "/story-create/:id",
+    element: <AddStoriesPage />,
   },
 ];
 

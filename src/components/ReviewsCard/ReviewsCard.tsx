@@ -1,12 +1,12 @@
 import { FC } from "react";
-import ReviewAvatar from "../ReviewAvatar";
+import ReviewAvatar from "../CircleImage";
 import { ReviewsCardProps } from "./ReviewsCard.interfaces";
 
 const ReviewsCard: FC<ReviewsCardProps> = ({ reviewsImages }) => {
   return (
     <div className="flex flex-row gap-10">
       {reviewsImages.slice(0, 4).map((item, index) => (
-        <ReviewAvatar key={`reviewsCard-${index}`} img={item} />
+        <ReviewAvatar key={`reviewsCard-${index}`} img={item.image} />
       ))}
       <p className="max-w-[218px] text-white text-mobile-subTitle">
         {reviewsImages.length} отзывов пользователей о данном маршруте

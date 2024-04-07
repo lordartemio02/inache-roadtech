@@ -11,6 +11,9 @@ function rem(v) {
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    backgroundImage: {
+      main: "url('../MainBg.png')",
+    },
     fontFamily: {
       suisseIntl: ["SuisseIntl"],
       protoGrotesk: ["ProtoGrotesk"],

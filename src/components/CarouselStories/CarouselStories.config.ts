@@ -2,7 +2,7 @@ export const responsiveMultiplySlide = {
   desktop: {
     breakpoint: { max: 3000, min: 768 },
     items: 1,
-    partialVisibilityGutter: 70,
+    partialVisibilityGutter: 50,
   },
   mobile: {
     breakpoint: {
@@ -10,7 +10,7 @@ export const responsiveMultiplySlide = {
       min: 0,
     },
     items: 1,
-    partialVisibilityGutter: 40,
+    partialVisibilityGutter: 30,
   },
 };
 

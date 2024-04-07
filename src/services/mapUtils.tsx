@@ -1,14 +1,19 @@
 import {
+  BalloonButtonTitles,
+  BalloonDescription,
+  BalloonImagesSrc,
+  BalloonTitles,
+} from "../components/Balloon/Balloon.interface";
+import { BalloonInfo } from "../components/BalloonInfo";
+import Event from "../services/eventEmitter";
+import {
   IExcursionPoints,
   IMapPoints as IYandexMapPoints,
   IPartnersPoints,
   IPromoPoints,
-  IRoutePoints
+  IRoutePoints,
 } from "../store/thunk/mapThunk";
-import Event from '../services/eventEmitter';
 import { IPoint, TLoadingState } from "./yandexMap";
-import { BalloonInfo } from "../components/BalloonInfo";
-import { BalloonButtonTitles, BalloonDescription, BalloonImagesSrc, BalloonTitles } from "../components/Balloon/Balloon.interface";
 import Marker from "../components/Marker";
 
 const balloonCloseButtonDataId = "balloonCloseButtonDataId";
@@ -37,8 +42,8 @@ export interface IMapPoints {
 export const enum MarkerTypes {
   start = "start",
   route = "route",
-  promo ="promo",
-  partners ="partners",
+  promo = "promo",
+  partners = "partners",
   excursion = "excursion",
   selfie = "selfie",
 }
@@ -52,7 +57,9 @@ export const emitMapLoadState = (state: TLoadingState) => {
   Event.emit("add", { loadingState: state });
 };
 
-const prepareIconComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints) => {
+const prepareIconComponent = (
+  point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
+) => {
   switch (point.type) {
     case MarkerTypes.route:
       return (
@@ -89,7 +96,9 @@ const prepareIconComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoin
   }
 };
 
-const prepareBalloonComponent = (point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints) => {
+const prepareBalloonComponent = (
+  point: IRoutePoints | IPromoPoints | IPartnersPoints | IExcursionPoints
+) => {
   switch (point.type) {
     case MarkerTypes.route:
       return (

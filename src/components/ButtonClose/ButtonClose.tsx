@@ -8,9 +8,16 @@ interface IButtonClose {
   id: string;
 }
 
-const ButtonClose: FC<IButtonClose> = ({ onClick, className = "", id = "" }) => {
+const ButtonClose: FC<IButtonClose> = ({
+  onClick,
+  className = "",
+  id = "",
+}) => {
   return (
-    <button data-id={id} onClick={onClick ? onClick : () => {}} className={`p-3 cursor-pointer active:outline-none ${className}`}>
+    <button
+      data-id={id}
+      onClick={onClick ? onClick : () => {}}
+      className={`p-3 cursor-pointer active:outline-none ${className}`}>
       <div
         className={`w-6 h-6 rounded-full bg-natural-600 flex justify-center items-center`}>
         <CloseIcon className="w-1/2 h-1/2 [&>path]:stroke-natural-100/50" />
