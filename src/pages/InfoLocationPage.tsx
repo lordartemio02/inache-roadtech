@@ -73,8 +73,8 @@ const InfoLocationPage = () => {
               alt="Image Description"
             />
           </div>
-          <div className="rounded-32">
-            <img src={} alt="" />
+          <div className="rounded-32 relative">
+            <img src={data?.title || ""} alt="image" />
           </div>
         </>
       )}

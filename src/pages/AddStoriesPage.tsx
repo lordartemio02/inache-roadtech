@@ -7,15 +7,15 @@ const AddStoriesPage = () => {
   const { id } = useParams();
   const [file, setFile] = useState<any>(null);
 
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
 
-  const goBack = () => {
-    nav(-1);
-  };
+  // const goBack = () => {
+  //   nav(-1);
+  // };
 
-  const onClickLike = () => {
-    setLike((prev) => !prev);
-  };
+  // const onClickLike = () => {
+  //   setLike((prev) => !prev);
+  // };
 
   const handlerFile = (e: any) => {
     setFile(e.target.files[0]);

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CloseIcon, HeartIcon } from "../assets/icons";
 import Layout from "../components/Layout";
@@ -7,15 +6,15 @@ import ProgressBar from "../components/ProgressBar";
 const StorySliderPage = () => {
   const nav = useNavigate();
 
-  const [like, setLike] = useState(false);
+  // const [like, setLike] = useState(false);
 
   const goBack = () => {
     nav(-1);
   };
 
-  const onClickLike = () => {
-    setLike((prev) => !prev);
-  };
+  // const onClickLike = () => {
+  //   setLike((prev) => !prev);
+  // };
 
   return (
     <Layout hideFooter>
