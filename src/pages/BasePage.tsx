@@ -20,12 +20,11 @@ import Layout from "../components/Layout";
 import SearchMainBlock from "../components/SearchMainBlock";
 import { TypesRoadSearch } from "../interfaces/TypesRoadSearch";
 import data from "../mock/cardsList.json";
-import { useGetPopularRoutesQuery } from "../store/api/routesApi";
 
 const BasePage = () => {
   const [dateRange, setDateRange] = useState<(Date | null)[]>([null, null]);
   const [startDate, endDate] = dateRange;
-  const datas = useGetPopularRoutesQuery({});
+
   // const [searchValue, setSearchValue] = useState<string>("");
   const nav = useNavigate();
 
