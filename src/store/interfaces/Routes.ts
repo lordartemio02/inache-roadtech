@@ -21,7 +21,7 @@ export type Point = {
   description: string;
   latitude: number;
   longitude: number;
-  attachments: null;
+  attachments: string[];
   preview_image: string;
   address: string;
   day_number: number;
