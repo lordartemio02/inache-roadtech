@@ -17,6 +17,7 @@ const RoadPage = () => {
       const token = localStorage.getItem("accessToken");
       if (token) {
         await saveRoute({ id }).unwrap();
+        nav(`/added-road/${id}`);
       } else {
         nav("/login");
       }

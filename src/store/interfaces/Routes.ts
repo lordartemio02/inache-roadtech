@@ -6,7 +6,7 @@ export type Routes = {
   caption?: string;
   tags?: string[];
   city?: string;
-  days_count?: string;
+  days_count: string;
   location_count?: string;
   createdAt?: Date;
   updatedAt?: Date;

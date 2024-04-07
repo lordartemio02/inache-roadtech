@@ -33,6 +33,7 @@ import SmartRoadIcon from "./SmartRoadIcon.svg?react";
 import SuitcaseIcon from "./SuitcaseIcon.svg?react";
 import telegramIcon from "./telegramIcon.svg";
 import TrainIcon from "./TrainIcon.svg?react";
+import UnionIcon from "./UnionIcon.svg?react";
 import userIcon from "./userIcon.svg";
 import vkIcon from "./vkIcon.svg";
 
@@ -65,6 +66,7 @@ export {
   ChevronLeft,
   OnFootIcon,
   OnCarIcon,
+  UnionIcon,
   OnBusIcon,
   OnBikeIcon,
   SmartRoadIcon,
