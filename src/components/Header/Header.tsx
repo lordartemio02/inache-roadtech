@@ -2,8 +2,8 @@ import { FC, useState } from "react";
 
 import logo from "/logo.svg";
 
+import { useNavigate } from "react-router-dom";
 import {
-  // circleFlagsIcon,
   CloseIcon,
   HamburgerIcon,
   HeartIcon,
@@ -16,6 +16,7 @@ import Navigation from "../Navigation";
 const Header: FC = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const isMobile = false;
+  const nav = useNavigate();
 
   const handleClickMenu = () => {
     setIsOpenMenu((prev) => !prev);
@@ -28,7 +29,7 @@ const Header: FC = () => {
       }`}>
       <div className="container flex justify-between items-center py-3">
         <div className="flex items-center gap-[20px]">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4" onClick={() => nav("/")}>
             <img src={logo} alt="Rosspass" />
             <div className="w-0.5 h-7 rounded-sm bg-natural-500" />
             <div className="uppercase text-brand-100 font-bold">Россия</div>
@@ -52,14 +53,17 @@ const Header: FC = () => {
               leftIcon={<img src={mosturizmIcon} alt="Мои планы" />}>
               { isMobile ? "Проекты Мостуризма" : "" }
             </Button> */}
-            <Button type="thetriary" className="py-2 gap-0" leftIcon={<HeartIcon />}>
-              { isMobile ? "Мои планы" : "" }
+            <Button
+              type="thetriary"
+              className="py-2 gap-0"
+              leftIcon={<HeartIcon />}>
+              {isMobile ? "Мои планы" : ""}
             </Button>
             <Button
               type="thetriary"
               className="py-2 gap-0"
               leftIcon={<img src={userIcon} alt="Профиль" />}>
-              { isMobile ? "Войти" : "" }
+              {isMobile ? "Войти" : ""}
             </Button>
             {/* <Button type="thetriary" className="py-2">
               <img src={circleFlagsIcon} alt="Локализация" />
@@ -69,8 +73,12 @@ const Header: FC = () => {
                 aria-hidden
                 onClick={handleClickMenu}
                 className="py-2 flex items-center gap-2 cursor-pointer">
-                {isOpenMenu ? <CloseIcon stroke="#000000" /> : <HamburgerIcon />}
-                { isMobile ? "Меню" : "" }
+                {isOpenMenu ? (
+                  <CloseIcon stroke="#000000" />
+                ) : (
+                  <HamburgerIcon />
+                )}
+                {isMobile ? "Меню" : ""}
               </div>
             </div>
           </div>

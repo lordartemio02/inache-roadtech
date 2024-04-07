@@ -10,6 +10,7 @@ import {
   TrainIcon,
 } from "../assets/icons";
 import point from "../assets/images/Point.png";
+import tamagochi from "../assets/images/Tam.png";
 import Banner from "../components/Banner";
 import Button from "../components/Button";
 import CarouselMain from "../components/CarouselMain";
@@ -39,10 +40,6 @@ const BasePage = () => {
   const onSearch = () => {
     nav(`/road/4d6390e5-0a3d-4366-88c2-26d61e64bfa1`);
   };
-
-  console.log("====================================");
-  console.log(datas);
-  console.log("====================================");
 
   return (
     <Layout hideFooter>
@@ -101,11 +98,20 @@ const BasePage = () => {
           <CarouselMain images={data[0].images} />
         </div>
         <div className="my-5 px-4">
-          <Banner
-            title="Маршруты"
-            desc="Популярные маршруты и планировщик путешествий: гулять это интересно!"
-            img={point}
-          />
+          {typeSelected === TypesRoadSearch.ROAD ? (
+            <Banner
+              title="Герой RUSSPASS с вами!"
+              desc="Проходите маршрут, выполняйте задания и получайте подарки вместе с героем RUSSPASS"
+              img={tamagochi}
+            />
+          ) : (
+            <Banner
+              onClick={() => onCLickType(TypesRoadSearch.ROAD)}
+              title="Маршруты"
+              desc="Популярные маршруты и планировщик путешествий: гулять это интересно!"
+              img={point}
+            />
+          )}
         </div>
 
         <SearchMainBlock>

@@ -33,7 +33,7 @@ export const enum BalloonImagesSrc {
   selfie = "/src/assets/images/Camera.png",
   start = "/src/assets/images/Flag.png",
   pin = "/src/assets/images/Pin.png",
-  ej = "/src/assets/images/ежик.png"
+  ej = "/src/assets/images/ej.png",
 }
 
 export const enum BalloonTitles {

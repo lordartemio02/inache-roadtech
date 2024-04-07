@@ -8,9 +8,8 @@ import Layout from "../components/Layout";
 import data from "../mock/cardsList.json";
 
 const StoryLocationPage = () => {
-  // const { id } = useParams();
-  // const { data, isLoading } = useGetRouteByIdQuery({ id });
-  const [currentIndex, setCurrentIndex] = useState(1);
+  // const { data: datas, isLoading } = useGetPointByIdQuery({ id });
+  const [_, setCurrentIndex] = useState(1);
   const nav = useNavigate();
 
   const onChangeIndex = (index: number) => {
@@ -24,9 +23,7 @@ const StoryLocationPage = () => {
   return (
     <Layout hideFooter>
       <div
-        className={`bg-[url(${
-          data[0].images[currentIndex - 1]?.image
-        })] h-[546px] bg-center`}>
+        className={`bg-[url("https://penza-online.ru/upload/articles/2023/643d24a6c2e11.jpeg")] h-[546px] bg-center`}>
         <div className="flex flex-row justify-between p-4">
           <Button
             type="outline"
@@ -39,18 +36,10 @@ const StoryLocationPage = () => {
       </div>
       <div className="fixed w-full bottom-4 h-[394px]">
         <div
-          className="absolute -top-40 left-9 flex flex-col items-center"
+          className="absolute -top-20 left-9 flex flex-col items-center"
           onClick={() => nav("/story/info")}>
-          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
+          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar || ""} />
           <div className="bg-white w-[1px] h-28"></div>
-        </div>
-        <div className="absolute -top-52 right-12 flex flex-col items-center">
-          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
-          <div className="bg-white w-[1px] h-60"></div>
-        </div>
-        <div className="absolute -top-64 right-36 flex flex-col items-center">
-          <CircleImage size="h-10 w-10" img={data[0].images[0].avatar} />
-          <div className="bg-white w-[1px] h-60"></div>
         </div>
         <CarouselStories
           onChangeIndex={onChangeIndex}
